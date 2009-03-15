@@ -1,0 +1,61 @@
+= Chars
+
+* http://chars.rubyforge.org/
+* https://github.com/postmodern/chars
+* Postmodern (postmodern.mod3 at gmail.com)
+
+== DESCRIPTION:
+
+== FEATURES:
+
+== EXAMPLES:
+
+* Return a random character from the set of all characters:
+
+  Chars.all.random_char
+  # => "\x94"
+
+* Return a random Array of characters from the alpha-numeric character set:
+
+  Chars.alpha_numeric.random_array(10)
+  # => ["Q", "N", "S", "4", "x", "z", "3", "M", "F", "F"]
+
+* Return a random String from the set of all characters:
+
+  Chars.all.random_string(10)
+  # => "\xc2h\xad\xccm7\x1e6J\x13"
+
+* Return a random String with a random length between 5 and 10, from the
+  set of space characters:
+
+  Chars.space.random_string(5..10)
+  # => "\r\v\n\t\n\f"
+
+== INSTALL:
+
+  $ sudo gem install chars
+
+== LICENSE:
+
+The MIT License
+
+Copyright (c) 2009 Hal Brodigan
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

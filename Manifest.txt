@@ -1,0 +1,12 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/chars.rb
+lib/chars/char_set.rb
+lib/chars/chars.rb
+lib/chars/version.rb
+tasks/spec.rb
+spec/spec_helper.rb
+spec/char_set_spec.rb
+spec/chars_spec.rb
