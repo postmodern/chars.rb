@@ -1,0 +1,1 @@
+require 'chars/extensions/string'
