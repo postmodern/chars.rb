@@ -1,4 +1,23 @@
-=== 0.1.0 / 2009-03-15
+=== 0.1.0 / 2009-03-16
 
 * Initial release.
+* Provides character sets for:
+  * Numeric
+  * Octal
+  * Uppercase Hexadecimal
+  * Lowercase Hexadecimal
+  * Hexadecimal
+  * Uppercase Alpha
+  * Lowercase Alpha
+  * Alpha
+  * Alpha-numeric
+  * Punctuation
+  * Symbols
+  * Space
+  * Printable
+  * Control
+  * ASCII
+* Provides convenience methods for testing wether a String or Integer
+  belongs to a certain character set.
+* Supports random text generation using specific character sets.
 
