@@ -1,35 +1,59 @@
 = Chars
 
 * http://chars.rubyforge.org/
-* https://github.com/postmodern/chars
+* http://github.com/postmodern/chars
 * Postmodern (postmodern.mod3 at gmail.com)
 
 == DESCRIPTION:
 
 == FEATURES:
 
+* Provides character sets for:
+  * Numeric ('0' - '9')
+  * Octal ('0' - '7')
+  * Uppercase Hexadecimal ('0' - '9', 'A' - 'F')
+  * Lowercase Hexadecimal ('0' - '9', 'a' - 'f')
+  * Hexadecimal ('0' - '9', 'a' - 'f', 'A' - 'F')
+  * Uppercase Alpha ('A' - 'Z')
+  * Lowercase Alpha ('a' - 'z')
+  * Alpha ('a' - 'z', 'A' - 'Z')
+  * Alpha-numeric ('0' - '9', 'a' - 'z', 'A' - 'Z')
+  * Punctuation (' ', '\'', '"', '`', ',', ';', ':', '~', '-', '(', ')',
+    '[', ']', '{', '}', '.', '?', '!')
+  * Symbols (' ', '\'', '"', '`', ',', ';', ':', '~', '-', '(', ')',
+    '[', ']', '{', '}', '.', '?', '!', '@', '#', '$', '%', '^', '&', '*',
+    '_', '+', '=', '|', '\\', '<', '>', '/')
+  * Space (' ', '\f', '\n', '\r', '\t', '\v')
+  * Printable ('0' - '9', 'a' - 'z', 'A' - 'Z', ' ', '\'', '"', '`', ',',
+    ';', ':', '~', '-', '(', ')', '[', ']', '{', '}', '.', '?', '!', '@',
+    '#', '$', '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/',
+    '\f', '\n', '\r', '\t', '\v')
+  * Control ('\x00' - '\x1f', '\x7f')
+  * ASCII ('\x00' - '\x7f')
+  * All ('\x00' - '\xff')
+
 == EXAMPLES:
 
 * Return a random character from the set of all characters:
 
-  Chars.all.random_char
-  # => "\x94"
+    Chars.all.random_char
+    # => "\x94"
 
 * Return a random Array of characters from the alpha-numeric character set:
 
-  Chars.alpha_numeric.random_array(10)
-  # => ["Q", "N", "S", "4", "x", "z", "3", "M", "F", "F"]
+    Chars.alpha_numeric.random_array(10)
+    # => ["Q", "N", "S", "4", "x", "z", "3", "M", "F", "F"]
 
 * Return a random String from the set of all characters:
 
-  Chars.all.random_string(10)
-  # => "\xc2h\xad\xccm7\x1e6J\x13"
+    Chars.all.random_string(10)
+    # => "\xc2h\xad\xccm7\x1e6J\x13"
 
 * Return a random String with a random length between 5 and 10, from the
   set of space characters:
 
-  Chars.space.random_string(5..10)
-  # => "\r\v\n\t\n\f"
+    Chars.space.random_string(5..10)
+    # => "\r\v\n\t\n\f"
 
 == INSTALL:
 
