@@ -6,6 +6,7 @@ lib/chars.rb
 lib/chars/char_set.rb
 lib/chars/chars.rb
 lib/chars/extensions.rb
+lib/chars/extensions/integer.rb
 lib/chars/extensions/string.rb
 lib/chars/version.rb
 tasks/spec.rb
