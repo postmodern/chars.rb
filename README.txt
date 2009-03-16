@@ -6,6 +6,9 @@
 
 == DESCRIPTION:
 
+Chars is a library for working with various character sets, recognizing
+text and generating random text from specific character sets.
+
 == FEATURES:
 
 * Provides character sets for:
@@ -33,6 +36,16 @@
   * All ('\x00' - '\xff')
 
 == EXAMPLES:
+
+* Determine wether a byte belongs to a character set:
+
+    0x41.alpha?
+    # => true
+
+* Determine wether a String belongs to a character set:
+
+    "22e1c0".hex?
+    # => true
 
 * Return a random character from the set of all characters:
 
