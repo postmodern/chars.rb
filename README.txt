@@ -6,8 +6,8 @@
 
 == DESCRIPTION:
 
-Chars is a library for working with various character sets, recognizing
-text and generating random text from specific character sets.
+Chars is a Ruby library for working with various character sets,
+recognizing text and generating random text from specific character sets.
 
 == FEATURES:
 
