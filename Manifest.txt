@@ -13,4 +13,5 @@ tasks/spec.rb
 spec/spec_helper.rb
 spec/char_set_spec.rb
 spec/chars_spec.rb
+spec/integer_spec.rb
 spec/string_spec.rb
