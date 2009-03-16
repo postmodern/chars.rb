@@ -2,63 +2,63 @@ require 'chars/chars'
 
 class String
 
-  def is_numeric?
+  def numeric?
     Chars::NUMERIC =~ self
   end
 
-  def is_octal?
+  def octal?
     Chars::OCTAL =~ self
   end
 
-  def is_uppercase_hex?
+  def uppercase_hex?
     Chars::UPPERCASE_HEXADECIMAL =~ self
   end
 
-  def is_lowercase_hex?
+  def lowercase_hex?
     Chars::LOWERCASE_HEXADECIMAL =~ self
   end
 
-  def is_hex?
+  def hex?
     Chars::HEXADECIMAL =~ self
   end
 
-  def is_uppercase_alpha?
+  def uppercase_alpha?
     Chars::UPPERCASE_ALPHA =~ self
   end
 
-  def is_lowercase_alpha?
+  def lowercase_alpha?
     Chars::LOWERCASE_ALPHA =~ self
   end
 
-  def is_alpha?
+  def alpha?
     Chars::ALPHA =~ self
   end
 
-  def is_alpha_numeric?
+  def alpha_numeric?
     Chars::ALPHA_NUMERIC =~ self
   end
 
-  def is_punctuation?
+  def punctuation?
     Chars::PUNCTUATION =~ self
   end
 
-  def is_symbolic?
+  def symbolic?
     Chars::SYMBOLS =~ self
   end
 
-  def is_space?
+  def space?
     Chars::SPACE =~ self
   end
 
-  def is_printable?
+  def printable?
     Chars::PRINTABLE =~ self
   end
 
-  def is_control?
+  def control?
     Chars::CONTROL =~ self
   end
 
-  def is_ascii?
+  def ascii?
     Chars::ASCII =~ self
   end
 
