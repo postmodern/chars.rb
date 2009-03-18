@@ -47,6 +47,12 @@ recognizing text and generating random text from specific character sets.
     "22e1c0".hex?
     # => true
 
+* Find all sub-strings that belong to a character set within a String:
+
+    ls = File.read('/bin/ls')
+    Chars.printable.strings_in(ls)
+    # => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
+
 * Return a random character from the set of all characters:
 
     Chars.all.random_char
