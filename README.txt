@@ -1,7 +1,7 @@
 = Chars
 
 * http://chars.rubyforge.org/
-* http://github.com/postmodern/chars
+* http://github.com/postmodern/chars/
 * Postmodern (postmodern.mod3 at gmail.com)
 
 == DESCRIPTION:
