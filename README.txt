@@ -37,12 +37,12 @@ recognizing text and generating random text from specific character sets.
 
 == EXAMPLES:
 
-* Determine wether a byte belongs to a character set:
+* Determine whether a byte belongs to a character set:
 
     0x41.alpha?
     # => true
 
-* Determine wether a String belongs to a character set:
+* Determine whether a String belongs to a character set:
 
     "22e1c0".hex?
     # => true
