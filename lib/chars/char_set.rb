@@ -189,22 +189,22 @@ module Chars
 
     alias + |
 
-      #
-      # Returns +true+ if all of the bytes within the specified _string_
-      # are included in the character set, returns +false+ otherwise.
-      #
-      #   Chars.alpha =~ "hello"
-      #   # => true
-      #
-      def =~(string)
-        return false unless string.respond_to?(:each_byte)
+    #
+    # Returns +true+ if all of the bytes within the specified _string_
+    # are included in the character set, returns +false+ otherwise.
+    #
+    #   Chars.alpha =~ "hello"
+    #   # => true
+    #
+    def =~(string)
+      return false unless string.respond_to?(:each_byte)
 
-        string.each_byte do |b|
-          return false unless include?(b)
-        end
-
-        return true
+      string.each_byte do |b|
+        return false unless include?(b)
       end
+
+      return true
+    end
 
     #
     # Inspects the character set.
