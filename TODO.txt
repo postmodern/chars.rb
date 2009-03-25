@@ -1,0 +1,9 @@
+== TODO:
+
+=== 0.2.0:
+
+* Implement unicode CharSets.
+  * Rewrite CharSet#=~.
+  * Rewrite CharSet#strings_in.
+  * Add unicode sets to Chars.
+
