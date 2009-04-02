@@ -162,7 +162,7 @@ module Chars
       index = 0
 
       while index <= (data.length - min_length)
-        if self =~ data[index...(index + min_length)]
+        if self === data[index...(index + min_length)]
           sub_index = (index + min_length)
 
           while self.include_char?(data[sub_index..sub_index])
@@ -193,10 +193,10 @@ module Chars
     # Returns +true+ if all of the bytes within the specified _string_
     # are included in the character set, returns +false+ otherwise.
     #
-    #   Chars.alpha =~ "hello"
+    #   Chars.alpha === "hello"
     #   # => true
     #
-    def =~(string)
+    def ===(string)
       return false unless string.respond_to?(:each_byte)
 
       string.each_byte do |b|

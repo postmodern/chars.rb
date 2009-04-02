@@ -3,63 +3,63 @@ require 'chars/chars'
 class String
 
   def numeric?
-    Chars::NUMERIC =~ self
+    Chars::NUMERIC === self
   end
 
   def octal?
-    Chars::OCTAL =~ self
+    Chars::OCTAL === self
   end
 
   def uppercase_hex?
-    Chars::UPPERCASE_HEXADECIMAL =~ self
+    Chars::UPPERCASE_HEXADECIMAL === self
   end
 
   def lowercase_hex?
-    Chars::LOWERCASE_HEXADECIMAL =~ self
+    Chars::LOWERCASE_HEXADECIMAL === self
   end
 
   def hex?
-    Chars::HEXADECIMAL =~ self
+    Chars::HEXADECIMAL === self
   end
 
   def uppercase_alpha?
-    Chars::UPPERCASE_ALPHA =~ self
+    Chars::UPPERCASE_ALPHA === self
   end
 
   def lowercase_alpha?
-    Chars::LOWERCASE_ALPHA =~ self
+    Chars::LOWERCASE_ALPHA === self
   end
 
   def alpha?
-    Chars::ALPHA =~ self
+    Chars::ALPHA === self
   end
 
   def alpha_numeric?
-    Chars::ALPHA_NUMERIC =~ self
+    Chars::ALPHA_NUMERIC === self
   end
 
   def punctuation?
-    Chars::PUNCTUATION =~ self
+    Chars::PUNCTUATION === self
   end
 
   def symbolic?
-    Chars::SYMBOLS =~ self
+    Chars::SYMBOLS === self
   end
 
   def space?
-    Chars::SPACE =~ self
+    Chars::SPACE === self
   end
 
   def printable?
-    Chars::PRINTABLE =~ self
+    Chars::PRINTABLE === self
   end
 
   def control?
-    Chars::CONTROL =~ self
+    Chars::CONTROL === self
   end
 
   def ascii?
-    Chars::ASCII =~ self
+    Chars::ASCII === self
   end
 
 end

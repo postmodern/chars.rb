@@ -180,7 +180,7 @@ describe Chars::CharSet do
   end
 
   it "should determine if a String is made up of the characters from the char set" do
-    (@char_set =~ "AABCBAA").should == true
-    (@char_set =~ "AADDEE").should_not == true
+    (@char_set === "AABCBAA").should == true
+    (@char_set === "AADDEE").should_not == true
   end
 end
