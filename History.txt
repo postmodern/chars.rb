@@ -1,3 +1,8 @@
+=== 0.1.1 / 2009-04-01
+
+* Renamed CharSet#=~ to CharSet#===.
+* Added an alias from CharSet#=~ to CharSet#===.
+
 === 0.1.0 / 2009-03-16
 
 * Initial release.
