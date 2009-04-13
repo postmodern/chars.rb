@@ -206,6 +206,8 @@ module Chars
       return true
     end
 
+    alias =~ ===
+
     #
     # Inspects the character set.
     #
