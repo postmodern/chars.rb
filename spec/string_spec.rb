@@ -59,7 +59,11 @@ describe String do
     "\b\b\a".should be_control
   end
 
+  it "should recognize signed ASCII strings" do
+    "lol\0".should be_signed_ascii
+  end
+
   it "should recognize ASCII strings" do
-    "lol\0".should be_ascii
+    "\xff\xfe".should be_ascii
   end
 end

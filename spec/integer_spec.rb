@@ -59,7 +59,11 @@ describe Integer do
     0x1b.should be_control
   end
 
+  it "should recognize signed ASCII bytes" do
+    0x00.should be_signed_ascii
+  end
+
   it "should recognize ASCII bytes" do
-    0x00.should be_ascii
+    0x80.should be_ascii
   end
 end

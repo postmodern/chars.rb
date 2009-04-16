@@ -58,6 +58,10 @@ class String
     Chars::CONTROL === self
   end
 
+  def signed_ascii?
+    Chars::SIGNED_ASCII === self
+  end
+
   def ascii?
     Chars::ASCII === self
   end

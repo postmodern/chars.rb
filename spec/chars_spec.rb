@@ -17,8 +17,8 @@ describe Chars do
     @punctuation_string = Chars.punctuation.random_string(10)
     @symbols_string = Chars.symbols.random_string(10)
     @control_string = Chars.control.random_string(10)
+    @signed_ascii_string = Chars.signed_ascii.random_string(10)
     @ascii_string = Chars.ascii.random_string(10)
-    @all_string = Chars.all.random_string(10)
   end
 
   it "should provide a numeric CharSet" do

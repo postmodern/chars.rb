@@ -58,6 +58,10 @@ class Integer
     Chars::CONTROL.include?(self)
   end
 
+  def signed_ascii?
+    Chars::SIGNED_ASCII.include?(self)
+  end
+
   def ascii?
     Chars::ASCII.include?(self)
   end

@@ -45,11 +45,11 @@ module Chars
   # The control-char character set
   CONTROL = CharSet.new(0..0x1f, 0x7f)
 
-  # The ASCII character set
-  ASCII = CharSet.new(0..0x7f)
+  # The signed ASCII character set
+  SIGNED_ASCII = CharSet.new(0..0x7f)
 
   # The full 8-bit character set
-  ALL = CharSet.new(0..0xff)
+  ASCII = CharSet.new(0..0xff)
 
   #
   # The numeric decimal character set.
@@ -150,16 +150,16 @@ module Chars
   end
 
   #
+  # The signed ASCII character set.
+  #
+  def Chars.signed_ascii
+    SIGNED_ASCII
+  end
+
+  #
   # The ASCII character set.
   #
   def Chars.ascii
     ASCII
-  end
-
-  #
-  # The full 8-bit character set.
-  #
-  def Chars.all
-    ALL
   end
 end
