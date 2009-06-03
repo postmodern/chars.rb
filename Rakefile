@@ -5,7 +5,7 @@ require 'hoe'
 require './tasks/spec.rb'
 require './lib/chars/version.rb'
 
-Hoe.new('chars', Chars::VERSION) do |p|
+Hoe.spec('chars') do |p|
   p.rubyforge_name = 'chars'
   p.developer('Postmodern','postmodern.mod3@gmail.com')
   p.remote_rdoc_dir = '/'
