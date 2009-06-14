@@ -6,10 +6,10 @@ require 'hoe/signing'
 require './tasks/spec.rb'
 require './lib/chars/version.rb'
 
-Hoe.spec('chars') do |p|
-  p.rubyforge_name = 'chars'
-  p.developer('Postmodern','postmodern.mod3@gmail.com')
-  p.remote_rdoc_dir = '/'
+Hoe.spec('chars') do
+  self.rubyforge_name = 'chars'
+  self.developer('Postmodern','postmodern.mod3@gmail.com')
+  self.remote_rdoc_dir = '/'
 end
 
 # vim: syntax=Ruby
