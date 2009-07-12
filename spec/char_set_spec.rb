@@ -148,6 +148,41 @@ describe Chars::CharSet do
       @char_set.include?(b).should == true
     end
   end
+  
+  it "should return a random Array of uniqe bytes" do
+    bytes = @char_set.random_distinct_bytes(10)
+    bytes.uniq.length.should == bytes.length
+    bytes.each do |b|
+      @char_set.include?(b).should == true
+    end
+  end
+
+  it "should return a random Array of unique chars" do
+    chars = @char_set.random_distinct_chars(10)
+    chars.uniq.length.should == chars.length
+    chars.each do |c|
+      @char_set.include_char?(c).should == true
+    end
+  end
+
+  it "should return a random Array of unique bytes with a varying length" do
+    bytes = @char_set.random_distinct_bytes(5..10)
+    #bytes.uniq.length.should == bytes.length
+    bytes.length.between?(5, 10).should == true
+    bytes.each do |b|
+      @char_set.include?(b).should == true
+    end
+  end
+
+  it "should return a random Array of uniqe chars with a varying length" do
+    chars = @char_set.random_distinct_chars(5..10)
+    #chars.uniq.length.should == chars.length
+    chars.length.between?(5, 10).should == true
+    chars.each do |c|
+      @char_set.include_char?(c).should == true
+    end
+  end
+
 
   it "should be able to be compared with another set of chars" do
     (@char_set == Chars::CharSet['A', 'B', 'C']).should == true

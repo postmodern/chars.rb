@@ -27,6 +27,9 @@ recognizing text and generating random text from specific character sets.
     '[', ']', '{', '}', '.', '?', '!', '@', '#', '$', '%', '^', '&', '*',
     '_', '+', '=', '|', '\\', '<', '>', '/')
   * Space (' ', '\f', '\n', '\r', '\t', '\v')
+  * Visible ('0' - '9', 'a' - 'z', 'A' - 'Z', '\'', '"', '`', ',',
+    ';', ':', '~', '-', '(', ')', '[', ']', '{', '}', '.', '?', '!', '@',
+    '#', '$', '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/',)
   * Printable ('0' - '9', 'a' - 'z', 'A' - 'Z', ' ', '\'', '"', '`', ',',
     ';', ':', '~', '-', '(', ')', '[', ']', '{', '}', '.', '?', '!', '@',
     '#', '$', '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/',
@@ -60,8 +63,12 @@ recognizing text and generating random text from specific character sets.
 
 * Return a random Array of characters from the alpha-numeric character set:
 
-    Chars.alpha_numeric.random_array(10)
+    Chars.alpha_numeric.random_chars(10)
     # => ["Q", "N", "S", "4", "x", "z", "3", "M", "F", "F"]
+
+* Return a random Array of a random length of unique characters from the visible character set:
+    Chars.visible.random_distinct_chars(1..10)
+    # => ["S", "l", "o", "8", "'", "q"]
 
 * Return a random String from the set of all characters:
 
