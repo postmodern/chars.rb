@@ -40,7 +40,9 @@ module Chars
   SPACE = CharSet.new(' ', "\f", "\n", "\r", "\t", "\v")
 
   # The set of printable characters (not including spaces)
-  VISIBLE = ALPHA_NUMERIC + PUNCTUATION + SYMBOLS 
+  VISIBLE = ALPHA_NUMERIC + ['\'', '"', '`', ',', ';', ':', '~', '-',
+            '(', ')', '[', ']', '{', '}', '.', '?', '!', '@', '#', '$',
+            '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/']
   
   # The set of printable characters (including spaces)
   PRINTABLE = ALPHA_NUMERIC + PUNCTUATION + SYMBOLS + SPACE
