@@ -119,10 +119,9 @@ module Chars
     #
     def random_distinct_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
-        #return Array.new(length.sort_by { rand }.first) { random_byte }
-        self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
+        return self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
       else
-        self.entries.sort_by { rand }.slice(0...length) 
+        return self.entries.sort_by { rand }.slice(0...length) 
       end
     end
 
@@ -146,8 +145,8 @@ module Chars
 
     #
     # Returns an Array of the specified _length_ containing
-    # random UNIQUE characters from the character set. The specified _length_
-    # may be an Integer, Array or a Range of lengths.
+    # random UNIQUE characters from the character set. The specified
+    # _length_ may be an Integer, Array or a Range of lengths.
     #
     def random_distinct_chars(length)
       random_distinct_bytes(length).map { |b| b.chr }
