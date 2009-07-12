@@ -149,7 +149,7 @@ describe Chars::CharSet do
     end
   end
   
-  it "should return a random Array of uniqe bytes" do
+  it "should return a random Array of unique bytes" do
     bytes = @char_set.random_distinct_bytes(10)
     bytes.uniq.length.should == bytes.length
     bytes.each do |b|
@@ -174,7 +174,7 @@ describe Chars::CharSet do
     end
   end
 
-  it "should return a random Array of uniqe chars with a varying length" do
+  it "should return a random Array of unique chars with a varying length" do
     chars = @char_set.random_distinct_chars(5..10)
     chars.uniq.length.should == chars.length
     chars.length.between?(5, 10).should == true
