@@ -51,7 +51,7 @@ class String
   end
 
   def visible?
-    Chars::VISIBLE == self
+    Chars::VISIBLE === self
   end
 
   def printable?
