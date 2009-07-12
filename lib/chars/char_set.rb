@@ -113,6 +113,22 @@ module Chars
 
     #
     # Returns an Array of the specified _length_ containing
+    # random bytes from the character set with no duplicate bytes. 
+    # The specified _length_ may be an Integer, Array or a 
+    # Range of lengths.
+    #
+    def random_distinct_bytes(length)
+      if (length.kind_of?(Array) || length.kind_of?(Range))
+        #return Array.new(length.sort_by { rand }.first) { random_byte }
+        self.entries.sort_by { rand }.slice(0..(length.sort_by { rand }.first))
+      else
+        self.entries.sort_by { rand }.slice(0..length) 
+      end
+    end
+
+
+    #
+    # Returns an Array of the specified _length_ containing
     # random characters from the character set. The specified _length_
     # may be an Integer, Array or a Range of lengths.
     #
@@ -127,6 +143,24 @@ module Chars
     def random_string(length)
       random_chars(length).join
     end
+
+    #
+    # Returns an Array of the specified _length_ containing
+    # random UNIQUE characters from the character set. The specified _length_
+    # may be an Integer, Array or a Range of lengths.
+    #
+    def random_distinct_chars(length)
+      random_distinct_bytes(length).map { |b| b.chr }
+    end
+
+    #
+    # Returns a String of the specified _length_ containing
+    # random UNIQUE characters from the character set.
+    #
+    def random_distinct_string(length)
+      random_distinct_chars(length).join
+    end
+
 
     #
     # Finds sub-strings within the specified _data_ that are part of the
