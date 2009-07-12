@@ -51,6 +51,11 @@ describe String do
     "  \t".should be_space
   end
 
+  it "should recognize visible strings" do
+    "abc".should be_visible
+    "ab c".should_not be_visible
+  end
+
   it "should recognize printable strings" do
     "abc, [123]\nDEF".should be_printable
   end

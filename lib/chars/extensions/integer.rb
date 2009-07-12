@@ -50,6 +50,10 @@ class Integer
     Chars::SPACE.include?(self)
   end
 
+  def visible?
+    Chars::VISIBLE.include?(self)
+  end
+
   def printable?
     Chars::PRINTABLE.include?(self)
   end

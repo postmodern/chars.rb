@@ -51,6 +51,11 @@ describe Integer do
     0x20.should be_space
   end
 
+  it "should recognize visible bytes" do
+    0x41.should be_visible
+    0x20.should_not be_visible
+  end
+
   it "should recognize printable bytes" do
     0x3f.should be_printable
   end
