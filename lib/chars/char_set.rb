@@ -145,7 +145,7 @@ module Chars
 
     #
     # Returns an Array of the specified _length_ containing
-    # random UNIQUE characters from the character set. The specified
+    # unique random characters from the character set. The specified
     # _length_ may be an Integer, Array or a Range of lengths.
     #
     def random_distinct_chars(length)
@@ -154,7 +154,7 @@ module Chars
 
     #
     # Returns a String of the specified _length_ containing
-    # random UNIQUE characters from the character set.
+    # unique random characters from the character set.
     #
     def random_distinct_string(length)
       random_distinct_chars(length).join
