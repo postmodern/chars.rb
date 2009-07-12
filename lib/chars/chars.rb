@@ -39,6 +39,9 @@ module Chars
   # The space character set
   SPACE = CharSet.new(' ', "\f", "\n", "\r", "\t", "\v")
 
+  # The set of printable characters (not including spaces)
+  VISIBLE = ALPHA_NUMERIC + PUNCTUATION + SYMBOLS 
+  
   # The set of printable characters (including spaces)
   PRINTABLE = ALPHA_NUMERIC + PUNCTUATION + SYMBOLS + SPACE
 
@@ -135,6 +138,12 @@ module Chars
     SPACE
   end
 
+  #
+  # The set of printable characters, not including spaces.
+  #
+  def Chars.visible
+    VISIBLE
+  end
   #
   # The set of printable characters, including spaces.
   #
