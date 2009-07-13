@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Chars::CharSet do
   before(:all) do
     @integer_range = (0x41..0x43)
-    @string_range = ('A'..'C')
+    @string_range = ('A'..'Z')
     @integers = @integer_range.to_a
     @strings = @string_range.to_a
 
@@ -185,15 +185,14 @@ describe Chars::CharSet do
 
 
   it "should be able to be compared with another set of chars" do
-    (@char_set == Chars::CharSet['A', 'B', 'C']).should == true
-    (@char_set == Chars::CharSet['A', 'C', 'B']).should == true
+    (@char_set == Chars::CharSet[('A'..'Z')]).should == true
   end
 
   it "should be able to be unioned with another set of chars" do
     super_set = (@char_set | Chars::CharSet['D'])
 
     super_set.class.should == Chars::CharSet
-    super_set.should == Chars::CharSet['A', 'B', 'C', 'D']
+    super_set.should == Chars::CharSet[('A'..'Z'), 'D']
   end
 
   it "should be able to be removed from another set of chars" do
@@ -208,7 +207,7 @@ describe Chars::CharSet do
   end
 
   it "should find sub-strings from a String belonging to the char set" do
-    @char_set.strings_in("AAAAXBXCCCCCC").should == [
+    @char_set.strings_in("AAAA!B!CCCCCC").should == [
       "AAAA",
       "CCCCCC"
     ]
@@ -216,6 +215,6 @@ describe Chars::CharSet do
 
   it "should determine if a String is made up of the characters from the char set" do
     (@char_set === "AABCBAA").should == true
-    (@char_set === "AADDEE").should_not == true
+    (@char_set === "AA!!EE").should_not == true
   end
 end

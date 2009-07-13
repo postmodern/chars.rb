@@ -19,6 +19,7 @@ describe Chars do
     @control_string = Chars.control.random_string(10)
     @signed_ascii_string = Chars.signed_ascii.random_string(10)
     @ascii_string = Chars.ascii.random_string(10)
+    @visible_string = Chars.visible.random_string(10)
   end
 
   it "should provide a numeric CharSet" do
@@ -81,6 +82,13 @@ describe Chars do
     @alpha_numeric_string.length.should == 10
     @alpha_numeric_string.each_byte do |b|
       Chars::ALPHA_NUMERIC.include?(b).should == true
+    end
+  end
+  
+  it "should provide a visible CharSet" do
+    @visible_string.length.should == 10
+    @visible_string.each_byte do |b|
+      Chars::VISIBLE.include?(b).should == true
     end
   end
 
