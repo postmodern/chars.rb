@@ -120,9 +120,9 @@ module Chars
     def random_distinct_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
         #return Array.new(length.sort_by { rand }.first) { random_byte }
-        self.entries.sort_by { rand }.slice(0..(length.sort_by { rand }.first))
+        self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
       else
-        self.entries.sort_by { rand }.slice(0..length) 
+        self.entries.sort_by { rand }.slice(0...length) 
       end
     end
 
