@@ -11,6 +11,7 @@ Hoe.spec('chars') do
   self.developer('Postmodern','postmodern.mod3@gmail.com')
   self.remote_rdoc_dir = '/'
   self.extra_deps = [
+    ['hoe', '>=2.0.0'],
     ['yard', '>=0.2.3.5']
   ]
 end
