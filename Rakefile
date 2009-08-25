@@ -14,6 +14,8 @@ Hoe.spec('chars') do
     ['hoe', '>=2.0.0'],
     ['yard', '>=0.2.3.5']
   ]
+
+  self.spec_extras = {:has_rdoc => 'yard'}
 end
 
 # vim: syntax=Ruby
