@@ -14,6 +14,10 @@ Hoe.spec('chars') do
     ['yard', '>=0.2.3.5']
   ]
 
+  self.extra_dev_deps = [
+    ['rspec', '>=1.1.3']
+  ]
+
   self.spec_extras = {:has_rdoc => 'yard'}
 end
 
