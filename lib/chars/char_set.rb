@@ -4,7 +4,10 @@ module Chars
   class CharSet < SortedSet
 
     #
-    # Creates a new CharSet object with the given _chars_.
+    # Creates a new CharSet object.
+    #
+    # @param [Array<String, Integer, Range>] chars
+    #   The chars for the CharSet.
     #
     def initialize(*chars)
       super()
@@ -29,8 +32,14 @@ module Chars
     alias map_bytes map
 
     #
-    # Returns +true+ if the character set includes the specified _char_,
-    # returns +false+ otherwise.
+    # Determines if a character is contained within the character set.
+    #
+    # @param [String] char
+    #   The character to search for.
+    #
+    # @return [Boolean]
+    #   Specifies whether the character is contained within the
+    #   character set.
     #
     def include_char?(char)
       return false unless char.respond_to?(:each_byte)
@@ -41,67 +50,125 @@ module Chars
     end
 
     #
-    # Returns all the characters within the character set as Strings.
+    # The characters within the character set.
+    #
+    # @return [Array<String>]
+    #   All the characters within the character set.
     #
     def chars
       map { |b| b.chr }
     end
 
     #
-    # Iterates over every character within the character set, passing
-    # each to the given _block_.
+    # Iterates over every character within the character set.
+    #
+    # @yield [char]
+    #   If a block is given, it will be passed each character in the
+    #   character set.
+    #
+    # @yieldparam [String] char
+    #   Each character in the character set.
     #
     def each_char(&block)
       each { |b| block.call(b.chr) } if block
     end
 
     #
-    # Selects an Array of characters from the character set that match
-    # the given _block_.
+    # Selects characters from the character set.
+    #
+    # @yield [char]
+    #   If a block is given, it will be used to select the characters
+    #   from the character set.
+    #
+    # @yieldparam [String] char
+    #   The character to select or reject.
+    #
+    # @return [Array<String>]
+    #   The selected characters from the character set.
     #
     def select_chars(&block)
       chars.select(&block)
     end
 
     #
-    # Maps the characters of the character set using the given _block_.
+    # Maps the characters of the character set.
+    #
+    # @yield [char]
+    #   The given block will be used to transform the characters within
+    #   the character set.
+    #
+    # @yieldparam [String] char
+    #   Each character in the character set.
+    #
+    # @return [Array<String>]
+    #   The mapped characters of the character set.
     #
     def map_chars(&block)
       chars.map(&block)
     end
 
     #
-    # Returns a random byte from the character set.
+    # @return [Integer]
+    #   A random byte from the character set.
     #
     def random_byte
       self.entries[rand(self.length)]
     end
 
     #
-    # Returns a random char from the character set.
+    # @return [String]
+    #   A random char from the character set.
     #
     def random_char
       random_byte.chr
     end
 
     #
-    # Pass a random byte to the specified _block_, _n_ times.
+    # Pass random bytes to a given block.
+    #
+    # @param [Integer] n
+    #   Specifies how many times to pass a random byte to the block.
+    #
+    # @yield [byte]
+    #   The block will receive the random bytes.
+    #
+    # @yieldparam [Integer] byte
+    #   The random byte from the character set.
+    #
+    # @return [Integer]
+    #   The number of times the given block was passed random bytes.
     #
     def each_random_byte(n,&block)
       n.times { block.call(random_byte) }
     end
 
     #
-    # Pass a random character to the specified _block_, _n_ times.
+    # Pass random characters to a given block.
+    #
+    # @param [Integer] n
+    #   Specifies how many times to pass a random character to the block.
+    #
+    # @yield [char]
+    #   The block will receive the random characters.
+    #
+    # @yieldparam [String] char
+    #   The random character from the character set.
+    #
+    # @return [Integer]
+    #   The number of times the given block was passed random characters.
     #
     def each_random_char(n,&block)
       each_random_byte(n) { |b| block.call(b.chr) }
     end
 
     #
-    # Returns an Array of the specified _length_ containing
-    # random bytes from the character set. The specified _length_ may
-    # be an Integer, Array or a Range of lengths.
+    # Creates an Array of random bytes from the character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the Array of random bytes.
+    #
+    # @return [Array<Integer>]
+    #   The randomly selected bytes.
     #
     def random_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
@@ -112,10 +179,13 @@ module Chars
     end
 
     #
-    # Returns an Array of the specified _length_ containing
-    # random bytes from the character set with no duplicate bytes. 
-    # The specified _length_ may be an Integer, Array or a 
-    # Range of lengths.
+    # Creates an Array of random non-repeating bytes from the character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the Array of random non-repeating bytes.
+    #
+    # @return [Array<Integer>]
+    #   The randomly selected non-repeating bytes.
     #
     def random_distinct_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
@@ -125,36 +195,60 @@ module Chars
       end
     end
 
-
     #
-    # Returns an Array of the specified _length_ containing
-    # random characters from the character set. The specified _length_
-    # may be an Integer, Array or a Range of lengths.
+    # Creates an Array of random characters from the character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the Array of random characters.
+    #
+    # @return [Array<String>]
+    #   The randomly selected characters.
     #
     def random_chars(length)
       random_bytes(length).map { |b| b.chr }
     end
 
     #
-    # Returns a String of the specified _length_ containing
-    # random characters from the character set.
+    # Creates a String containing randomly selected characters from the
+    # character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the String of random characters.
+    #
+    # @return [String]
+    #   The String of randomly selected characters.
+    #
+    # @see random_chars
     #
     def random_string(length)
       random_chars(length).join
     end
 
     #
-    # Returns an Array of the specified _length_ containing
-    # unique random characters from the character set. The specified
-    # _length_ may be an Integer, Array or a Range of lengths.
+    # Creates an Array of random non-repeating characters from the
+    # character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the Array of random non-repeating characters.
+    #
+    # @return [Array<Integer>]
+    #   The randomly selected non-repeating characters.
     #
     def random_distinct_chars(length)
       random_distinct_bytes(length).map { |b| b.chr }
     end
 
     #
-    # Returns a String of the specified _length_ containing
-    # unique random characters from the character set.
+    # Creates a String containing randomly selected non-repeating
+    # characters from the character set.
+    #
+    # @param [Integer, Array, Range] length
+    #   The length of the String of random non-repeating characters.
+    #
+    # @return [String]
+    #   The String of randomly selected non-repeating characters.
+    #
+    # @see random_distinct_chars
     #
     def random_distinct_string(length)
       random_distinct_chars(length).join
@@ -162,18 +256,22 @@ module Chars
 
 
     #
-    # Finds sub-strings within the specified _data_ that are part of the
-    # character set, using the given _options_.
+    # Finds sub-strings within given data that are made of characters within
+    # the character set.
     #
-    # _options_ may contain the following keys:
-    # <tt>:length</tt>:: The minimum length of matching sub-strings
-    #                    within the _data_. Defaults to 4, if not
-    #                    specified.
-    # <tt>:offsets</tt>:: Specifies wether to return a Hash of the
-    #                     offsets within the _data_ and the matched
-    #                     sub-strings. If not specified a simple
-    #                     Array will be returned of the matched
-    #                     sub-strings.
+    # @param [String] data
+    #   The data to find sub-strings within.
+    #
+    # @param [Hash] options
+    #   Additional options.
+    #
+    # @option options [Integer] :length (4)
+    #   The minimum length of sub-strings found within the given data.
+    #
+    # @option options [Boolean] :offsets (false)
+    #   Specifies whether to return a Hash of offsets and matched
+    #   sub-strings within the data, or to just return the matched
+    #   sub-strings themselves.
     #
     def strings_in(data,options={})
       min_length = (options[:length] || 4)
@@ -213,8 +311,14 @@ module Chars
     end
 
     #
-    # Creates a new CharSet object containing the both the characters
-    # of the character set and the specified _other_set_.
+    # Creates a new CharSet object by unioning the character set with
+    # another character set.
+    #
+    # @param [CharSet, Array, Range] other_set
+    #   The other character set to union with.
+    #
+    # @return [CharSet]
+    #   The unioned character sets.
     #
     def |(other_set)
       super(CharSet.new(other_set))
@@ -223,9 +327,17 @@ module Chars
     alias + |
 
     #
-    # Returns +true+ if all of the bytes within the specified _string_
-    # are included in the character set, returns +false+ otherwise.
+    # Compares the bytes within a given string with the bytes of the
+    # character set.
     #
+    # @param [String] string
+    #   The string to compare with the character set.
+    #
+    # @return [Boolean]
+    #   Specifies whether all of the bytes within the given string are
+    #   included in the character set.
+    #
+    # @example
     #   Chars.alpha === "hello"
     #   # => true
     #
@@ -243,6 +355,9 @@ module Chars
 
     #
     # Inspects the character set.
+    #
+    # @return [String]
+    #   The inspected character set.
     #
     def inspect
       "#<#{self.class.name}: {" + map { |b|
