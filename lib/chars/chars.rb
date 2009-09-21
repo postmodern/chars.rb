@@ -57,20 +57,20 @@ module Chars
   ASCII = CharSet.new(0..0xff)
 
   #
-  # The numeric decimal character set.
+  # The decimal-digit character set.
   #
   # @return [CharSet]
-  #   The numeric decimal character set.
+  #   The decimal-digit character set.
   #
   def Chars.numeric
     NUMERIC
   end
 
   #
-  # The octal character set.
+  # The octal-digit character set.
   #
   # @return [CharSet]
-  #   The octal character set.
+  #   The octal-digit character set.
   #
   def Chars.octal
     OCTAL
@@ -107,30 +107,30 @@ module Chars
   end
 
   #
-  # The upper-case alpha character set.
+  # The upper-case alphabetic character set.
   #
   # @return [CharSet]
-  #   The upper-case alpha character set.
+  #   The upper-case alphabetic character set.
   #
   def Chars.uppercase_alpha
     UPPERCASE_ALPHA
   end
 
   #
-  # The lower-case alpha character set.
+  # The lower-case alphabetic character set.
   #
   # @return [CharSet]
-  #   The lower-case alpha character set.
+  #   The lower-case alphabetic character set.
   #
   def Chars.lowercase_alpha
     LOWERCASE_ALPHA
   end
 
   #
-  # The alpha character set.
+  # The alphabetic character set.
   #
   # @return [CharSet]
-  #   The alpha character set.
+  #   The alphabetic character set.
   #
   def Chars.alpha
     ALPHA
@@ -167,10 +167,10 @@ module Chars
   end
 
   #
-  # The space character set.
+  # The white-space character set.
   #
   # @return [CharSet]
-  #   The space character set.
+  #   The white-space character set.
   #
   def Chars.space
     SPACE
@@ -197,10 +197,10 @@ module Chars
   end
 
   #
-  # The control-char character set.
+  # The control-character character set.
   #
   # @return [CharSet]
-  #   The control-character set.
+  #   The control-character character set.
   #
   def Chars.control
     CONTROL
