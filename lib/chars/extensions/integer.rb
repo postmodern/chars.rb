@@ -136,7 +136,7 @@ class Integer
   # @return [Boolean]
   #   Specifies whether the byte belongs to the symbolic character set.
   #
-  # @see Chars.symbolic
+  # @see Chars.symbols
   #
   def symbolic?
     Chars::SYMBOLS.include?(self)
