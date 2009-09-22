@@ -81,6 +81,10 @@ recognizing text and generating random text from specific character sets.
     Chars.space.random_string(5..10)
     # => "\r\v\n\t\n\f"
 
+== REQUIREMENTS:
+
+* {YARD}[http://yard.soen.ca/] >= 0.2.3.5
+
 == INSTALL:
 
   $ sudo gem install chars
