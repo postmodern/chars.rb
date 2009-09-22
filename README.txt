@@ -35,8 +35,8 @@ recognizing text and generating random text from specific character sets.
     '#', '$', '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/',
     '\f', '\n', '\r', '\t', '\v')
   * Control ('\x00' - '\x1f', '\x7f')
-  * ASCII ('\x00' - '\x7f')
-  * All ('\x00' - '\xff')
+  * Signed ASCII ('\x00' - '\x7f')
+  * ASCII ('\x00' - '\xff')
 
 == EXAMPLES:
 
