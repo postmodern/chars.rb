@@ -16,7 +16,7 @@ Hoe.spec('chars') do
   self.remote_yard_dir = '/'
 
   self.extra_deps = [
-    ['yard', '>=0.2.3.5']
+    ['yard', '>=0.5.3']
   ]
 
   self.extra_dev_deps = [
