@@ -3,7 +3,8 @@
 require 'rubygems'
 require 'hoe'
 require 'hoe/signing'
-require './tasks/yard.rb'
+
+Hoe.plugin :yard
 
 Hoe.spec('chars') do
   self.rubyforge_name = 'chars'
@@ -11,7 +12,9 @@ Hoe.spec('chars') do
 
   self.rspec_options += ['--colour', '--format', 'specdoc']
 
-  self.remote_rdoc_dir = '/'
+  self.yard_options += ['--protected']
+  self.remote_yard_dir = '/'
+
   self.extra_deps = [
     ['yard', '>=0.2.3.5']
   ]
@@ -19,8 +22,6 @@ Hoe.spec('chars') do
   self.extra_dev_deps = [
     ['rspec', '>=1.2.8']
   ]
-
-  self.spec_extras = {:has_rdoc => 'yard'}
 end
 
 # vim: syntax=Ruby
