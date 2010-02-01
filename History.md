@@ -1,4 +1,4 @@
-=== 0.1.2 / 2009-09-21
+### 0.1.2 / 2009-09-21
 
 * Require Hoe >= 2.3.3.
 * Require YARD >= 0.2.3.5.
@@ -10,12 +10,12 @@
 * Moved to YARD based documentation.
 * All specs now pass on JRuby 1.3.1.
 
-=== 0.1.1 / 2009-04-01
+### 0.1.1 / 2009-04-01
 
 * Renamed CharSet#=~ to CharSet#===.
 * Added an alias from CharSet#=~ to CharSet#===.
 
-=== 0.1.0 / 2009-03-16
+### 0.1.0 / 2009-03-16
 
 * Initial release.
 * Provides character sets for:

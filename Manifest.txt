@@ -1,6 +1,6 @@
-History.rdoc
+History.md
 Manifest.txt
-README.rdoc
+README.md
 Rakefile
 lib/chars.rb
 lib/chars/char_set.rb

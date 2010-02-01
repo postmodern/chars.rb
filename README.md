@@ -1,15 +1,15 @@
-= Chars
+# Chars
 
 * http://chars.rubyforge.org/
 * http://github.com/postmodern/chars/
 * Postmodern (postmodern.mod3 at gmail.com)
 
-== DESCRIPTION:
+## DESCRIPTION:
 
 Chars is a Ruby library for working with various character sets,
 recognizing text and generating random text from specific character sets.
 
-== FEATURES:
+## FEATURES:
 
 * Provides character sets for:
   * Numeric ('0' - '9')
@@ -38,54 +38,56 @@ recognizing text and generating random text from specific character sets.
   * Signed ASCII ('\x00' - '\x7f')
   * ASCII ('\x00' - '\xff')
 
-== EXAMPLES:
+## EXAMPLES:
 
-* Determine whether a byte belongs to a character set:
+Determine whether a byte belongs to a character set:
 
     0x41.alpha?
     # => true
 
-* Determine whether a String belongs to a character set:
+Determine whether a String belongs to a character set:
 
     "22e1c0".hex?
     # => true
 
-* Find all sub-strings that belong to a character set within a String:
+Find all sub-strings that belong to a character set within a String:
 
     ls = File.read('/bin/ls')
     Chars.printable.strings_in(ls)
     # => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
 
-* Return a random character from the set of all characters:
+Return a random character from the set of all characters:
 
     Chars.all.random_char
     # => "\x94"
 
-* Return a random Array of characters from the alpha-numeric character set:
+Return a random Array of characters from the alpha-numeric character set:
 
     Chars.alpha_numeric.random_chars(10)
     # => ["Q", "N", "S", "4", "x", "z", "3", "M", "F", "F"]
 
-* Return a random Array of a random length of unique characters from the visible character set:
+Return a random Array of a random length of unique characters from the
+visible character set:
+
     Chars.visible.random_distinct_chars(1..10)
     # => ["S", "l", "o", "8", "'", "q"]
 
-* Return a random String from the set of all characters:
+Return a random String from the set of all characters:
 
     Chars.all.random_string(10)
     # => "\xc2h\xad\xccm7\x1e6J\x13"
 
-* Return a random String with a random length between 5 and 10, from the
-  set of space characters:
+Return a random String with a random length between 5 and 10, from the
+set of space characters:
 
     Chars.space.random_string(5..10)
     # => "\r\v\n\t\n\f"
 
-== INSTALL:
+## INSTALL:
 
-  $ sudo gem install chars
+    $ sudo gem install chars
 
-== LICENSE:
+## LICENSE:
 
 The MIT License
 
