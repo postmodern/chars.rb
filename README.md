@@ -4,12 +4,12 @@
 * http://github.com/postmodern/chars/
 * Postmodern (postmodern.mod3 at gmail.com)
 
-## DESCRIPTION:
+## Description
 
 Chars is a Ruby library for working with various character sets,
 recognizing text and generating random text from specific character sets.
 
-## FEATURES:
+## Features
 
 * Provides character sets for:
   * Numeric ('0' - '9')
@@ -38,7 +38,7 @@ recognizing text and generating random text from specific character sets.
   * Signed ASCII ('\x00' - '\x7f')
   * ASCII ('\x00' - '\xff')
 
-## EXAMPLES:
+## Examples
 
 Determine whether a byte belongs to a character set:
 
@@ -83,31 +83,11 @@ set of space characters:
     Chars.space.random_string(5..10)
     # => "\r\v\n\t\n\f"
 
-## INSTALL:
+## Install
 
     $ sudo gem install chars
 
-## LICENSE:
+## License
 
-The MIT License
+See {file:LICENSE.txt} for license information.
 
-Copyright (c) 2009-2010 Hal Brodigan
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
