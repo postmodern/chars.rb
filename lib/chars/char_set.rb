@@ -42,10 +42,10 @@ module Chars
     #   character set.
     #
     def include_char?(char)
-      return false unless char.respond_to?(:each_byte)
-
-      char.each_byte do |b|
-        return include?(b)
+      if char.respond_to?(:each_byte)
+        char.each_byte.any? { |b| include?(b) }
+      else
+        false
       end
     end
 
@@ -69,8 +69,13 @@ module Chars
     # @yieldparam [String] char
     #   Each character in the character set.
     #
-    def each_char(&block)
-      each { |b| block.call(b.chr) } if block
+    # @return [Enumerator]
+    #   If no block is given, an enumerator object will be returned.
+    #
+    def each_char
+      return enum_for(:each_char) unless block_given?
+
+      each { |b| yield b.chr }
     end
 
     #
@@ -135,11 +140,14 @@ module Chars
     # @yieldparam [Integer] byte
     #   The random byte from the character set.
     #
-    # @return [Integer]
-    #   The number of times the given block was passed random bytes.
+    # @return [Enumerator]
+    #   If no block is given, an enumerator object will be returned.
     #
     def each_random_byte(n,&block)
-      n.times { block.call(random_byte) }
+      return enum_for(:each_random_byte,n) unless block_given?
+
+      n.times { yield random_byte }
+      return nil
     end
 
     #
@@ -154,11 +162,13 @@ module Chars
     # @yieldparam [String] char
     #   The random character from the character set.
     #
-    # @return [Integer]
-    #   The number of times the given block was passed random characters.
+    # @return [Enumerator]
+    #   If no block is given, an enumerator object will be returned.
     #
     def each_random_char(n,&block)
-      each_random_byte(n) { |b| block.call(b.chr) }
+      return enum_for(:each_random_char,n) unless block_given?
+
+      each_random_byte(n) { |b| yield b.chr }
     end
 
     #
@@ -172,9 +182,9 @@ module Chars
     #
     def random_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
-        return Array.new(length.sort_by { rand }.first) { random_byte }
+        Array.new(length.sort_by { rand }.first) { random_byte }
       else
-        return Array.new(length) { random_byte }
+        Array.new(length) { random_byte }
       end
     end
 
@@ -189,9 +199,9 @@ module Chars
     #
     def random_distinct_bytes(length)
       if (length.kind_of?(Array) || length.kind_of?(Range))
-        return self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
+        self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
       else
-        return self.entries.sort_by { rand }.slice(0...length) 
+        self.entries.sort_by { rand }.slice(0...length) 
       end
     end
 
@@ -342,13 +352,11 @@ module Chars
     #   # => true
     #
     def ===(string)
-      return false unless string.respond_to?(:each_byte)
-
-      string.each_byte do |b|
-        return false unless include?(b)
+      if string.respond_to?(:each_byte)
+        string.each_byte.all? { |b| include?(b) }
+      else
+        false
       end
-
-      return true
     end
 
     alias =~ ===
