@@ -1,0 +1,14 @@
+name: chars
+summary: A Ruby library for working with various character sets
+description:
+  Chars is a Ruby library for working with various character sets,
+  recognizing text and generating random text from specific character sets.
+homepage: http://github.com/postmodern/chars
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+has_yard: true
+
+development_dependencies:
+  ore: ~> 0.1.0
+  ore-tasks: ~> 0.1.0
+  rspec: ~> 2.0.0
