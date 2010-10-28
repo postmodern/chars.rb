@@ -1,3 +1,8 @@
+### 0.1.3 / 2010-10-27
+
+* Make sure all enumerable methods in {Chars::CharSet} return an
+  `Enumerator` object if no block is given.
+
 ### 0.1.2 / 2009-09-21
 
 * Require Hoe >= 2.3.3.
