@@ -1,4 +1,4 @@
-### 0.1.3 / 2010-10-27
+### 0.2.0 / 2010-10-27
 
 * Make sure all enumerable methods in {Chars::CharSet} return an
   `Enumerator` object if no block is given.
