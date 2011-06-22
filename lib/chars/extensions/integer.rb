@@ -11,7 +11,7 @@ class Integer
   # @see Chars.numeric
   #
   def numeric?
-    Chars::NUMERIC.include?(self)
+    Chars::NUMERIC.include_byte?(self)
   end
 
   #
@@ -23,7 +23,7 @@ class Integer
   # @see Chars.octal
   #
   def octal?
-    Chars::OCTAL.include?(self)
+    Chars::OCTAL.include_byte?(self)
   end
 
   #
@@ -37,7 +37,7 @@ class Integer
   # @see Chars.uppercase_hexadecimal
   #
   def uppercase_hex?
-    Chars::UPPERCASE_HEXADECIMAL.include?(self)
+    Chars::UPPERCASE_HEXADECIMAL.include_byte?(self)
   end
 
   #
@@ -51,7 +51,7 @@ class Integer
   # @see Chars.lowercase_hexadecimal
   #
   def lowercase_hex?
-    Chars::LOWERCASE_HEXADECIMAL.include?(self)
+    Chars::LOWERCASE_HEXADECIMAL.include_byte?(self)
   end
 
   #
@@ -63,7 +63,7 @@ class Integer
   # @see Chars.hexadecimal
   #
   def hex?
-    Chars::HEXADECIMAL.include?(self)
+    Chars::HEXADECIMAL.include_byte?(self)
   end
 
   #
@@ -77,7 +77,7 @@ class Integer
   # @see Chars.uppercase_alpha
   #
   def uppercase_alpha?
-    Chars::UPPERCASE_ALPHA.include?(self)
+    Chars::UPPERCASE_ALPHA.include_byte?(self)
   end
 
   #
@@ -91,7 +91,7 @@ class Integer
   # @see Chars.lowercase_alpha
   #
   def lowercase_alpha?
-    Chars::LOWERCASE_ALPHA.include?(self)
+    Chars::LOWERCASE_ALPHA.include_byte?(self)
   end
 
   #
@@ -103,7 +103,7 @@ class Integer
   # @see Chars.alpha
   #
   def alpha?
-    Chars::ALPHA.include?(self)
+    Chars::ALPHA.include_byte?(self)
   end
 
   #
@@ -115,7 +115,7 @@ class Integer
   # @see Chars.alpha_numeric
   #
   def alpha_numeric?
-    Chars::ALPHA_NUMERIC.include?(self)
+    Chars::ALPHA_NUMERIC.include_byte?(self)
   end
 
   #
@@ -127,7 +127,7 @@ class Integer
   # @see Chars.punctuation
   #
   def punctuation?
-    Chars::PUNCTUATION.include?(self)
+    Chars::PUNCTUATION.include_byte?(self)
   end
 
   #
@@ -139,7 +139,7 @@ class Integer
   # @see Chars.symbols
   #
   def symbolic?
-    Chars::SYMBOLS.include?(self)
+    Chars::SYMBOLS.include_byte?(self)
   end
 
   #
@@ -151,7 +151,7 @@ class Integer
   # @see Chars.space
   #
   def space?
-    Chars::SPACE.include?(self)
+    Chars::SPACE.include_byte?(self)
   end
 
   #
@@ -163,7 +163,7 @@ class Integer
   # @see Chars.visible
   #
   def visible?
-    Chars::VISIBLE.include?(self)
+    Chars::VISIBLE.include_byte?(self)
   end
 
   #
@@ -175,7 +175,7 @@ class Integer
   # @see Chars.printable
   #
   def printable?
-    Chars::PRINTABLE.include?(self)
+    Chars::PRINTABLE.include_byte?(self)
   end
 
   #
@@ -188,7 +188,7 @@ class Integer
   # @see Chars.control
   #
   def control?
-    Chars::CONTROL.include?(self)
+    Chars::CONTROL.include_byte?(self)
   end
 
   #
@@ -200,7 +200,7 @@ class Integer
   # @see Chars.signed_ascii
   #
   def signed_ascii?
-    Chars::SIGNED_ASCII.include?(self)
+    Chars::SIGNED_ASCII.include_byte?(self)
   end
 
   #
@@ -212,7 +212,7 @@ class Integer
   # @see Chars.ascii
   #
   def ascii?
-    Chars::ASCII.include?(self)
+    Chars::ASCII.include_byte?(self)
   end
 
 end
