@@ -2,59 +2,63 @@ require 'chars/char_set'
 
 module Chars
   # The numeric decimal character set
-  NUMERIC = CharSet.new('0'..'9')
+  NUMERIC = CharSet['0'..'9']
 
   # The octal character set
-  OCTAL = CharSet.new('0'..'7')
+  OCTAL = CharSet['0'..'7']
 
   # The upper-case hexadecimal character set
-  UPPERCASE_HEXADECIMAL = NUMERIC + ('A'..'F')
+  UPPERCASE_HEXADECIMAL = NUMERIC | CharSet['A'..'F']
 
   # The lower-case hexadecimal character set
-  LOWERCASE_HEXADECIMAL = NUMERIC + ('a'..'f')
+  LOWERCASE_HEXADECIMAL = NUMERIC | CharSet['a'..'f']
 
   # The hexadecimal character set
-  HEXADECIMAL = UPPERCASE_HEXADECIMAL + LOWERCASE_HEXADECIMAL
+  HEXADECIMAL = UPPERCASE_HEXADECIMAL | LOWERCASE_HEXADECIMAL
 
   # The upper-case alpha character set
-  UPPERCASE_ALPHA = CharSet.new('A'..'Z')
+  UPPERCASE_ALPHA = CharSet['A'..'Z']
 
   # The lower-case alpha character set
-  LOWERCASE_ALPHA = CharSet.new('a'..'z')
+  LOWERCASE_ALPHA = CharSet['a'..'z']
 
   # The alpha character set
-  ALPHA = UPPERCASE_ALPHA + LOWERCASE_ALPHA
+  ALPHA = UPPERCASE_ALPHA | LOWERCASE_ALPHA
 
   # The alpha-numeric character set
-  ALPHA_NUMERIC = ALPHA + NUMERIC
+  ALPHA_NUMERIC = ALPHA | NUMERIC
 
   # The punctuation character set
-  PUNCTUATION = CharSet.new(' ', '\'', '"', '`', ',', ';', ':', '~', '-',
-                            '(', ')', '[', ']', '{', '}', '.', '?', '!')
+  PUNCTUATION = CharSet[' ', '\'', '"', '`', ',', ';', ':', '~', '-',
+                        '(', ')', '[', ']', '{', '}', '.', '?', '!']
 
   # The symbolic character set
-  SYMBOLS = PUNCTUATION + ['@', '#', '$', '%', '^', '&', '*', '_', '+',
-    '=', '|', '\\', '<', '>', '/']
+  SYMBOLS = PUNCTUATION | CharSet[
+    '@', '#', '$', '%', '^', '&', '*', '_', '+',
+    '=', '|', '\\', '<', '>', '/'
+  ]
 
   # The space character set
   SPACE = CharSet.new(' ', "\f", "\n", "\r", "\t", "\v")
 
   # The set of printable characters (not including spaces)
-  VISIBLE = ALPHA_NUMERIC + ['\'', '"', '`', ',', ';', ':', '~', '-',
-            '(', ')', '[', ']', '{', '}', '.', '?', '!', '@', '#', '$',
-            '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/']
+  VISIBLE = ALPHA_NUMERIC | CharSet[
+    '\'', '"', '`', ',', ';', ':', '~', '-',
+    '(', ')', '[', ']', '{', '}', '.', '?', '!', '@', '#', '$',
+    '%', '^', '&', '*', '_', '+', '=', '|', '\\', '<', '>', '/'
+  ]
   
   # The set of printable characters (including spaces)
-  PRINTABLE = ALPHA_NUMERIC + PUNCTUATION + SYMBOLS + SPACE
+  PRINTABLE = ALPHA_NUMERIC | PUNCTUATION | SYMBOLS | SPACE
 
   # The control-char character set
-  CONTROL = CharSet.new(0..0x1f, 0x7f)
+  CONTROL = CharSet[0..0x1f, 0x7f]
 
   # The signed ASCII character set
-  SIGNED_ASCII = CharSet.new(0..0x7f)
+  SIGNED_ASCII = CharSet[0..0x7f]
 
   # The full 8-bit character set
-  ASCII = CharSet.new(0..0xff)
+  ASCII = CharSet[0..0xff]
 
   #
   # The decimal-digit character set.
