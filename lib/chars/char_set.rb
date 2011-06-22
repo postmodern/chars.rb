@@ -6,23 +6,67 @@ module Chars
     #
     # Creates a new CharSet object.
     #
-    # @param [Array<String, Integer, Range>] chars
+    # @param [Array<String, Integer, Range>] arguments
     #   The chars for the CharSet.
     #
-    def initialize(*chars)
+    def initialize(*arguments)
       super()
 
-      merge_chars = lambda { |element|
-        if element.kind_of?(String)
-          element.each_byte(&merge_chars)
-        elsif element.kind_of?(Integer)
-          self << element
-        elsif element.kind_of?(Enumerable)
-          element.each(&merge_chars)
-        end
-      }
+      @chars = Hash.new { |hash,key| hash[key] = byte_to_char(key) }
 
-      merge_chars.call(chars)
+      arguments.each do |subset|
+        case subset
+        when String, Integer
+          self << subset
+        when Enumerable
+          subset.each { |char| self << char }
+        else
+          raise(ArgumentError,"arguments must be a String, Integer or Enumerable")
+        end
+      end
+    end
+    
+    #
+    # Creates a new character set.
+    #
+    # @see #initialize
+    #
+    # @since 0.2.1
+    #
+    def self.[](*arguments)
+      new(*arguments)
+    end
+
+    #
+    # Adds a character to the set.
+    #
+    # @param [String, Integer] other
+    #   The character(s) or byte to add.
+    #
+    # @return [CharSet]
+    #   The modified character set.
+    #
+    # @raise [ArgumentError]
+    #   The argument was not a {String} or {Integer}.
+    #
+    # @since 0.2.1
+    #
+    def <<(other)
+      case other
+      when String
+        other.each_char do |char|
+          byte = char_to_byte(char)
+
+          @chars[byte] = char
+          super(byte)
+        end
+
+        return self
+      when Integer
+        super(other)
+      else
+        raise(ArgumentError,"can only append Strings and Integers")
+      end
     end
 
     alias include_byte? include?
@@ -42,8 +86,8 @@ module Chars
     #   character set.
     #
     def include_char?(char)
-      if char.respond_to?(:each_byte)
-        char.each_byte.any? { |b| include?(b) }
+      unless char.empty?
+        @chars.has_value?(char) || include_byte?(char_to_byte(char))
       else
         false
       end
@@ -56,7 +100,7 @@ module Chars
     #   All the characters within the character set.
     #
     def chars
-      map { |b| b.chr }
+      map { |byte| @chars[byte] }
     end
 
     #
@@ -75,7 +119,7 @@ module Chars
     def each_char
       return enum_for(:each_char) unless block_given?
 
-      each { |b| yield b.chr }
+      each { |byte| yield @chars[byte] }
     end
 
     #
@@ -92,7 +136,7 @@ module Chars
     #   The selected characters from the character set.
     #
     def select_chars(&block)
-      chars.select(&block)
+      each_char.select(&block)
     end
 
     #
@@ -109,7 +153,7 @@ module Chars
     #   The mapped characters of the character set.
     #
     def map_chars(&block)
-      chars.map(&block)
+      each_char.map(&block)
     end
 
     #
@@ -125,7 +169,7 @@ module Chars
     #   A random char from the character set.
     #
     def random_char
-      random_byte.chr
+      @chars[random_byte]
     end
 
     #
@@ -168,7 +212,7 @@ module Chars
     def each_random_char(n,&block)
       return enum_for(:each_random_char,n) unless block_given?
 
-      each_random_byte(n) { |b| yield b.chr }
+      each_random_byte(n) { |byte| yield @chars[byte] }
     end
 
     #
@@ -215,7 +259,7 @@ module Chars
     #   The randomly selected characters.
     #
     def random_chars(length)
-      random_bytes(length).map { |b| b.chr }
+      random_bytes(length).map { |byte| @chars[byte] }
     end
 
     #
@@ -245,7 +289,7 @@ module Chars
     #   The randomly selected non-repeating characters.
     #
     def random_distinct_chars(length)
-      random_distinct_bytes(length).map { |b| b.chr }
+      random_distinct_bytes(length).map { |byte| @chars[byte] }
     end
 
     #
@@ -263,7 +307,6 @@ module Chars
     def random_distinct_string(length)
       random_distinct_chars(length).join
     end
-
 
     #
     # Finds sub-strings within given data that are made of characters within
@@ -284,7 +327,9 @@ module Chars
     #   sub-strings themselves.
     #
     def strings_in(data,options={})
-      min_length = (options[:length] || 4)
+      min_length = options.fetch(:length,4)
+
+      return found if data.length < min_length
 
       if options[:offsets]
         found = {}
@@ -298,15 +343,13 @@ module Chars
         }
       end
 
-      return found if data.length < min_length
-
       index = 0
 
       while index <= (data.length - min_length)
-        if self === data[index...(index + min_length)]
+        if self === data[index,min_length]
           sub_index = (index + min_length)
 
-          while self.include_char?(data[sub_index..sub_index])
+          while self.include_char?(data[sub_index,1])
             sub_index += 1
           end
 
@@ -324,14 +367,16 @@ module Chars
     # Creates a new CharSet object by unioning the character set with
     # another character set.
     #
-    # @param [CharSet, Array, Range] other_set
+    # @param [CharSet, Array, Range] set
     #   The other character set to union with.
     #
     # @return [CharSet]
     #   The unioned character sets.
     #
-    def |(other_set)
-      super(CharSet.new(other_set))
+    def |(set)
+      set = CharSet.new(set) unless set.kind_of?(CharSet)
+
+      return super(set)
     end
 
     alias + |
@@ -340,7 +385,7 @@ module Chars
     # Compares the bytes within a given string with the bytes of the
     # character set.
     #
-    # @param [String] string
+    # @param [String, Enumerable] string
     #   The string to compare with the character set.
     #
     # @return [Boolean]
@@ -351,9 +396,19 @@ module Chars
     #   Chars.alpha === "hello"
     #   # => true
     #
-    def ===(string)
-      if string.respond_to?(:each_byte)
-        string.each_byte.all? { |b| include?(b) }
+    def ===(other)
+      case other
+      when String
+        other.each_char.all? { |char| include_char?(char) }
+      when Enumerable
+        other.all? do |element|
+          case element
+          when String
+            include_char?(element)
+          when Integer
+            include_byte?(element)
+          end
+        end
       else
         false
       end
@@ -368,18 +423,82 @@ module Chars
     #   The inspected character set.
     #
     def inspect
-      "#<#{self.class.name}: {" + map { |b|
-        case b
+      "#<#{self.class.name}: {" + map { |byte|
+        case byte
         when (0x07..0x0d), (0x20..0x7e)
-          b.chr.dump
+          @chars[byte].dump
         when 0x00
           # sly hack to make char-sets more friendly
           # to us C programmers
           '"\0"'
         else
-          "0x%02x" % b
+          "0x%02x" % byte
         end
       }.join(', ') + "}>"
+    end
+
+    protected
+
+    if RUBY_VERSION > '1.9.'
+      #
+      # Converts a byte to a character.
+      #
+      # @param [Integer] byte
+      #   The byte to convert.
+      #
+      # @return [String]
+      #   The character.
+      #
+      # @since 0.2.1
+      #
+      def byte_to_char(byte)
+        byte.chr(Encoding::UTF_8)
+      end
+
+      #
+      # Converts a character to a byte.
+      #
+      # @param [String] char
+      #   The character to convert.
+      #
+      # @return [Integer]
+      #   The byte.
+      #
+      # @since 0.2.1
+      #
+      def char_to_byte(char)
+        char.ord
+      end
+    else
+      #
+      # Converts a byte to a character.
+      #
+      # @param [Integer] byte
+      #   The byte to convert.
+      #
+      # @return [String]
+      #   The character.
+      #
+      # @since 0.2.1
+      #
+      def byte_to_char(byte)
+        byte.chr
+      end
+
+      #
+      # Converts a character to a byte.
+      #
+      # @param [String] char
+      #   The character to convert.
+      #
+      # @return [Integer]
+      #   The byte.
+      #
+      # @since 0.2.1
+      #
+      def char_to_byte(char)
+        char[0]
+      end
     end
 
   end
