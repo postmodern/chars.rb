@@ -1,3 +1,12 @@
+### 0.2.1 / 2011-06-22
+
+* Added {Chars::CharSet.[]}
+* Added {Chars::CharSet#<<}.
+* Added {Chars::CharSet#byte_to_char}.
+* Added {Chars::CharSet#char_to_byte}.
+* Added a cache of characters of the bytes within {Chars::CharSet}.
+* Use `String#each_char` to distinguish Unicode from ASCII.
+
 ### 0.2.0 / 2010-10-27
 
 * Make sure all enumerable methods in {Chars::CharSet} return an
