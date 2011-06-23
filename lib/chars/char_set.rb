@@ -6,7 +6,7 @@ module Chars
     #
     # Creates a new CharSet object.
     #
-    # @param [Array<String, Integer, Range>] arguments
+    # @param [Array<String, Integer, Enumerable>] arguments
     #   The chars for the CharSet.
     #
     def initialize(*arguments)
