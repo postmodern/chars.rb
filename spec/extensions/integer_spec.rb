@@ -1,6 +1,5 @@
-require 'chars/extensions/integer'
-
 require 'spec_helper'
+require 'chars/extensions/integer'
 
 describe Integer do
   it "should recognize numeric bytes" do

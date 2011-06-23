@@ -1,6 +1,5 @@
-require 'chars/extensions/string'
-
 require 'spec_helper'
+require 'chars/extensions/string'
 
 describe String do
   it "should recognize numeric strings" do
