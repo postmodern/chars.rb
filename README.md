@@ -83,6 +83,10 @@ set of space characters:
     Chars.space.random_string(5..10)
     # => "\r\v\n\t\n\f"
 
+## Requirements
+
+* [ruby](http://www.ruby-lang.org/) >= 1.8.7
+
 ## Install
 
     $ sudo gem install chars
