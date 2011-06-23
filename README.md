@@ -1,8 +1,9 @@
 # Chars
 
-* http://chars.rubyforge.org/
-* http://github.com/postmodern/chars/
-* Postmodern (postmodern.mod3 at gmail.com)
+* [Source](http://github.com/postmodern/chars#readme)
+* [Issues](http://github.com/postmodern/chars/issues)
+* [Documentation](http://rubydoc.info/gems/chars)
+* [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
