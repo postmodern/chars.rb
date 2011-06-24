@@ -9,6 +9,9 @@ module Chars
     # @param [Array<String, Integer, Enumerable>] arguments
     #   The chars for the CharSet.
     #
+    # @raise [TypeError]
+    #   One of the arguments was not a {String}, {Integer} or `Enumerable`.
+    #
     def initialize(*arguments)
       super()
 
@@ -21,7 +24,7 @@ module Chars
         when Enumerable
           subset.each { |char| self << char }
         else
-          raise(ArgumentError,"arguments must be a String, Integer or Enumerable")
+          raise(TypeError,"arguments must be a String, Integer or Enumerable")
         end
       end
     end
@@ -46,7 +49,7 @@ module Chars
     # @return [CharSet]
     #   The modified character set.
     #
-    # @raise [ArgumentError]
+    # @raise [TypeError]
     #   The argument was not a {String} or {Integer}.
     #
     # @since 0.2.1
@@ -65,7 +68,7 @@ module Chars
       when Integer
         super(other)
       else
-        raise(ArgumentError,"can only append Strings and Integers")
+        raise(TypeError,"can only append Strings and Integers")
       end
     end
 
