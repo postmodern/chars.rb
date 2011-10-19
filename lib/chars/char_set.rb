@@ -332,8 +332,6 @@ module Chars
     def strings_in(data,options={})
       min_length = options.fetch(:length,4)
 
-      return found if data.length < min_length
-
       if options[:offsets]
         found = {}
         found_substring = lambda { |offset,substring|
@@ -345,6 +343,8 @@ module Chars
           found << substring
         }
       end
+
+      return found if data.length < min_length
 
       index = 0
 
