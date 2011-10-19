@@ -329,22 +329,35 @@ module Chars
     #   sub-strings within the data, or to just return the matched
     #   sub-strings themselves.
     #
-    def strings_in(data,options={})
-      min_length = options.fetch(:length,4)
+    # @yield [match,(index)]
+    #   The given block will be passed every matched sub-string, and the
+    #   optional index.
+    #
+    # @yield [String] match
+    #   A sub-string containing the characters from the character set.
+    #
+    # @yield [Integer] index
+    #   The index the sub-string was found at.
+    #
+    # @return [Array, Hash]
+    #   If no block is given, an Array or Hash of sub-strings is returned.
+    #
+    def strings_in(data,options={},&block)
+      unless block
+        if options[:offsets]
+          found = {}
+          block = lambda { |offset,substring| found[offset] = substring }
+        else
+          found = []
+          block = lambda { |substring| found << substring }
+        end
 
-      if options[:offsets]
-        found = {}
-        found_substring = lambda { |offset,substring|
-          found[offset] = substring
-        }
-      else
-        found = []
-        found_substring = lambda { |offset,substring|
-          found << substring
-        }
+        strings_in(data,options,&block)
+        return found
       end
 
-      return found if data.length < min_length
+      min_length = options.fetch(:length,4)
+      return if data.length < min_length
 
       index = 0
 
@@ -356,14 +369,20 @@ module Chars
             sub_index += 1
           end
 
-          found_substring.call(index,data[index...sub_index])
+          match = data[index...sub_index]
+
+          case block.arity
+          when 2
+            yield match, index
+          else
+            yield match
+          end
+
           index = sub_index
         else
           index += 1
         end
       end
-
-      return found
     end
 
     #
