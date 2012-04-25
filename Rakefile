@@ -8,7 +8,7 @@ begin
   Gem::Tasks.new
 rescue LoadError => e
   warn e.message
-  warn "Run `gem install ore-tasks` to install 'ore/tasks'."
+  warn "Run `gem install rubygems-tasks` to install 'rubygems/tasks'."
 end
 
 begin
