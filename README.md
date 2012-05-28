@@ -1,7 +1,7 @@
 # Chars
 
-* [Source](http://github.com/postmodern/chars#readme)
-* [Issues](http://github.com/postmodern/chars/issues)
+* [Source](https://github.com/postmodern/chars#readme)
+* [Issues](https://github.com/postmodern/chars/issues)
 * [Documentation](http://rubydoc.info/gems/chars)
 * [Email](mailto:postmodern.mod3 at gmail.com)
 
