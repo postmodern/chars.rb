@@ -1,4 +1,4 @@
-### 0.2.2 / 2012-05-27
+### 0.2.2 / 2012-05-28
 
 * {Chars::CharSet#initialize} now raises a TypeError when given arguments
   that were neither a `String`, `Integer` or `Enumerable`.
