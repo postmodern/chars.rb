@@ -407,7 +407,7 @@ module Chars
     # Compares the bytes within a given string with the bytes of the
     # character set.
     #
-    # @param [String, Enumerable] string
+    # @param [String, Enumerable] other
     #   The string to compare with the character set.
     #
     # @return [Boolean]
