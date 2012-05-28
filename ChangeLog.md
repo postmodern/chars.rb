@@ -1,3 +1,13 @@
+### 0.2.2 / 2012-05-27
+
+* {Chars::CharSet#initialize} now raises a TypeError when given arguments
+  that were neither a `String`, `Integer` or `Enumerable`.
+* Allow {Chars::CharSet#strings_in} to yield results as they are found.
+* Improved the performance of {Chars::CharSet#strings_in} when operating on
+  small Strings.
+* Replaced ore-tasks with
+  [rubygems-tasks](https://github.com/postmodern/rubygems-tasks#readme).
+
 ### 0.2.1 / 2011-06-22
 
 * Added {Chars::CharSet.[]}
