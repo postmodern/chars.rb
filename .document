@@ -1,4 +1,4 @@
 lib/**/*.rb
 - 
-ChangeLog.*
+ChangeLog.md
 LICENSE.txt
