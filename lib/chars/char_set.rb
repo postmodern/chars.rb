@@ -120,7 +120,7 @@ module Chars
     #   If no block is given, an enumerator object will be returned.
     #
     def each_char
-      return enum_for(:each_char) unless block_given?
+      return enum_for(__method__) unless block_given?
 
       each { |byte| yield @chars[byte] }
     end
@@ -191,7 +191,7 @@ module Chars
     #   If no block is given, an enumerator object will be returned.
     #
     def each_random_byte(n,&block)
-      return enum_for(:each_random_byte,n) unless block_given?
+      return enum_for(__method__,n) unless block_given?
 
       n.times { yield random_byte }
       return nil
@@ -213,7 +213,7 @@ module Chars
     #   If no block is given, an enumerator object will be returned.
     #
     def each_random_char(n,&block)
-      return enum_for(:each_random_char,n) unless block_given?
+      return enum_for(__method__,n) unless block_given?
 
       each_random_byte(n) { |byte| yield @chars[byte] }
     end
