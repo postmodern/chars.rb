@@ -3,54 +3,54 @@ require 'chars/chars'
 
 describe Chars do
   it "should provide a numeric CharSet" do
-    Chars::NUMERIC =~ '0123456789'
+    expect(described_class::NUMERIC).to be =~ '0123456789'
   end
 
   it "should provide an octal CharSet" do
-    Chars::OCTAL =~ "01234567"
+    expect(described_class::OCTAL).to be =~ "01234567"
   end
 
   it "should provide an upper-case hexadecimal CharSet" do
-    Chars::UPPERCASE_HEXADECIMAL =~ "0123456789ABCDEF"
+    expect(described_class::UPPERCASE_HEXADECIMAL).to be =~ "0123456789ABCDEF"
   end
 
   it "should provide a lower-case hexadecimal CharSet" do
-    Chars::LOWERCASE_HEXADECIMAL =~ "0123456789abcdef"
+    expect(described_class::LOWERCASE_HEXADECIMAL).to be =~ "0123456789abcdef"
   end
 
   it "should provide a hexadecimal CharSet" do
-    Chars::HEXADECIMAL =~ "0123456789ABCDEFabcdef"
+    expect(described_class::HEXADECIMAL).to be =~ "0123456789ABCDEFabcdef"
   end
 
   it "should provide an upper-case alpha CharSet" do
-    Chars::UPPERCASE_ALPHA =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    expect(described_class::UPPERCASE_ALPHA).to be =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   end
 
   it "should provide a lower-case alpha CharSet" do
-    Chars::LOWERCASE_ALPHA =~ "abcdefghijklmnopqrstuvwxyz"
+    expect(described_class::LOWERCASE_ALPHA).to be =~ "abcdefghijklmnopqrstuvwxyz"
   end
 
   it "should provide an alpha CharSet" do
-    Chars::ALPHA =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    expect(described_class::ALPHA).to be =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
   end
 
   it "should provide an alpha-numeric CharSet" do
-    Chars::ALPHA_NUMERIC =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    expect(described_class::ALPHA_NUMERIC).to be =~ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
   end
   
   it "should provide a visible CharSet" do
-    Chars::VISIBLE =~ "!\"\#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+    expect(described_class::VISIBLE).to be =~ "!\"\#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
   end
 
   it "should provide a space CharSet" do
-    Chars::SPACE =~ "\t\n\v\f\r "
+    expect(described_class::SPACE).to be =~ "\t\n\v\f\r "
   end
 
   it "should provide a punctuation CharSet" do
-    Chars::PUNCTUATION =~ " !\"'(),-.:;?[]`{}~"
+    expect(described_class::PUNCTUATION).to be =~ " !\"'(),-.:;?[]`{}~"
   end
 
   it "should provide a symbols CharSet" do
-    Chars::SYMBOLS =~ " !\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+    expect(described_class::SYMBOLS).to be =~ " !\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
   end
 end

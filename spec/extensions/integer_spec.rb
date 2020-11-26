@@ -3,71 +3,71 @@ require 'chars/extensions/integer'
 
 describe Integer do
   it "should recognize numeric bytes" do
-    0x39.should be_numeric
+    expect(0x39).to be_numeric
   end
 
   it "should recognize octal bytes" do
-    0x30.should be_octal
+    expect(0x30).to be_octal
   end
 
   it "should recognize upper-case hexadecimal bytes" do
-    0x44.should be_uppercase_hex
+    expect(0x44).to be_uppercase_hex
   end
 
   it "should recognize lower-case hexadecimal bytes" do
-    0x61.should be_lowercase_hex
+    expect(0x61).to be_lowercase_hex
   end
 
   it "should recognize hexadecimal bytes" do
-    0x63.should be_hex
+    expect(0x63).to be_hex
   end
 
   it "should recognize upper-case alpha bytes" do
-    0x4c.should be_uppercase_alpha
+    expect(0x4c).to be_uppercase_alpha
   end
 
   it "should recognize lower-case alpha bytes" do
-    0x71.should be_lowercase_alpha
+    expect(0x71).to be_lowercase_alpha
   end
 
   it "should recognize alpha bytes" do
-    0x7a.should be_alpha
+    expect(0x7a).to be_alpha
   end
 
   it "should recognize alpha-numeric bytes" do
-    0x69.should be_alpha_numeric
+    expect(0x69).to be_alpha_numeric
   end
 
   it "should recognize punctuation bytes" do
-    0x60.should be_punctuation
+    expect(0x60).to be_punctuation
   end
 
   it "should recognize symbolic bytes" do
-    0x26.should be_symbolic
+    expect(0x26).to be_symbolic
   end
 
   it "should recognize space bytes" do
-    0x20.should be_space
+    expect(0x20).to be_space
   end
 
   it "should recognize visible bytes" do
-    0x41.should be_visible
-    0x20.should_not be_visible
+    expect(0x41).to be_visible
+    expect(0x20).to_not be_visible
   end
 
   it "should recognize printable bytes" do
-    0x3f.should be_printable
+    expect(0x3f).to be_printable
   end
 
   it "should recognize control bytes" do
-    0x1b.should be_control
+    expect(0x1b).to be_control
   end
 
   it "should recognize signed ASCII bytes" do
-    0x00.should be_signed_ascii
+    expect(0x00).to be_signed_ascii
   end
 
   it "should recognize ASCII bytes" do
-    0x80.should be_ascii
+    expect(0x80).to be_ascii
   end
 end
