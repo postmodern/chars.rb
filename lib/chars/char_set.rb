@@ -1,7 +1,7 @@
 require 'set'
 
 module Chars
-  class CharSet < SortedSet
+  class CharSet < Set
 
     #
     # Creates a new CharSet object.
