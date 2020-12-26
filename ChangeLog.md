@@ -1,3 +1,7 @@
+### 0.2.3 / 2020-12-25
+
+* Change {Chars::CharSet} to inherit from `Set`, instead of `SortedSet`.
+
 ### 0.2.2 / 2012-05-28
 
 * {Chars::CharSet#initialize} now raises a TypeError when given arguments
