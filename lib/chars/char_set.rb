@@ -15,7 +15,7 @@ module Chars
     def initialize(*arguments)
       super()
 
-      @chars = Hash.new { |hash,key| hash[key] = byte_to_char(key) }
+      @chars = Hash.new { |hash,key| hash[key] = key.chr(Encoding::UTF_8) }
 
       arguments.each do |subset|
         case subset
@@ -58,7 +58,7 @@ module Chars
       case other
       when String
         other.each_char do |char|
-          byte = char_to_byte(char)
+          byte = char.ord
 
           @chars[byte] = char
           super(byte)
@@ -90,7 +90,7 @@ module Chars
     #
     def include_char?(char)
       unless char.empty?
-        @chars.has_value?(char) || include_byte?(char_to_byte(char))
+        @chars.has_value?(char) || include_byte?(char.ord)
       else
         false
       end
@@ -457,38 +457,6 @@ module Chars
           "0x%02x" % byte
         end
       }.join(', ') + "}>"
-    end
-
-    protected
-
-    #
-    # Converts a byte to a character.
-    #
-    # @param [Integer] byte
-    #   The byte to convert.
-    #
-    # @return [String]
-    #   The character.
-    #
-    # @since 0.2.1
-    #
-    def byte_to_char(byte)
-      byte.chr(Encoding::UTF_8)
-    end
-
-    #
-    # Converts a character to a byte.
-    #
-    # @param [String] char
-    #   The character to convert.
-    #
-    # @return [Integer]
-    #   The byte.
-    #
-    # @since 0.2.1
-    #
-    def char_to_byte(char)
-      char.ord
     end
 
   end
