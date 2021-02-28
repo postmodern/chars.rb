@@ -1,5 +1,7 @@
 # Chars
 
+[![CI](https://github.com/postmodern/chars/actions/workflows/ruby.yml/badge.svg)](https://github.com/postmodern/chars/actions/workflows/ruby.yml)
+
 * [Source](https://github.com/postmodern/chars#readme)
 * [Issues](https://github.com/postmodern/chars/issues)
 * [Documentation](http://rubydoc.info/gems/chars)
