@@ -461,66 +461,34 @@ module Chars
 
     protected
 
-    if RUBY_VERSION > '1.9.'
-      #
-      # Converts a byte to a character.
-      #
-      # @param [Integer] byte
-      #   The byte to convert.
-      #
-      # @return [String]
-      #   The character.
-      #
-      # @since 0.2.1
-      #
-      def byte_to_char(byte)
-        byte.chr(Encoding::UTF_8)
-      end
+    #
+    # Converts a byte to a character.
+    #
+    # @param [Integer] byte
+    #   The byte to convert.
+    #
+    # @return [String]
+    #   The character.
+    #
+    # @since 0.2.1
+    #
+    def byte_to_char(byte)
+      byte.chr(Encoding::UTF_8)
+    end
 
-      #
-      # Converts a character to a byte.
-      #
-      # @param [String] char
-      #   The character to convert.
-      #
-      # @return [Integer]
-      #   The byte.
-      #
-      # @since 0.2.1
-      #
-      def char_to_byte(char)
-        char.ord
-      end
-    else
-      #
-      # Converts a byte to a character.
-      #
-      # @param [Integer] byte
-      #   The byte to convert.
-      #
-      # @return [String]
-      #   The character.
-      #
-      # @since 0.2.1
-      #
-      def byte_to_char(byte)
-        byte.chr
-      end
-
-      #
-      # Converts a character to a byte.
-      #
-      # @param [String] char
-      #   The character to convert.
-      #
-      # @return [Integer]
-      #   The byte.
-      #
-      # @since 0.2.1
-      #
-      def char_to_byte(char)
-        char[0]
-      end
+    #
+    # Converts a character to a byte.
+    #
+    # @param [String] char
+    #   The character to convert.
+    #
+    # @return [Integer]
+    #   The byte.
+    #
+    # @since 0.2.1
+    #
+    def char_to_byte(char)
+      char.ord
     end
 
   end
