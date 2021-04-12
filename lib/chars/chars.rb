@@ -66,7 +66,7 @@ module Chars
   # @return [CharSet]
   #   The decimal-digit character set.
   #
-  def Chars.numeric
+  def self.numeric
     NUMERIC
   end
 
@@ -76,7 +76,7 @@ module Chars
   # @return [CharSet]
   #   The octal-digit character set.
   #
-  def Chars.octal
+  def self.octal
     OCTAL
   end
 
@@ -86,7 +86,7 @@ module Chars
   # @return [CharSet]
   #   The upper-case hexadecimal character set.
   #
-  def Chars.uppercase_hexadecimal
+  def self.uppercase_hexadecimal
     UPPERCASE_HEXADECIMAL
   end
 
@@ -96,7 +96,7 @@ module Chars
   # @return [CharSet]
   #   The lower-case hexadecimal character set.
   #
-  def Chars.lowercase_hexadecimal
+  def self.lowercase_hexadecimal
     LOWERCASE_HEXADECIMAL
   end
 
@@ -106,7 +106,7 @@ module Chars
   # @return [CharSet]
   #   The hexadecimal character set.
   #
-  def Chars.hexadecimal
+  def self.hexadecimal
     HEXADECIMAL
   end
 
@@ -116,7 +116,7 @@ module Chars
   # @return [CharSet]
   #   The upper-case alphabetic character set.
   #
-  def Chars.uppercase_alpha
+  def self.uppercase_alpha
     UPPERCASE_ALPHA
   end
 
@@ -126,7 +126,7 @@ module Chars
   # @return [CharSet]
   #   The lower-case alphabetic character set.
   #
-  def Chars.lowercase_alpha
+  def self.lowercase_alpha
     LOWERCASE_ALPHA
   end
 
@@ -136,7 +136,7 @@ module Chars
   # @return [CharSet]
   #   The alphabetic character set.
   #
-  def Chars.alpha
+  def self.alpha
     ALPHA
   end
 
@@ -146,7 +146,7 @@ module Chars
   # @return [CharSet]
   #   The alpha-numeric character set.
   #
-  def Chars.alpha_numeric
+  def self.alpha_numeric
     ALPHA_NUMERIC
   end
 
@@ -156,7 +156,7 @@ module Chars
   # @return [CharSet]
   #   The punctuation character set.
   #
-  def Chars.punctuation
+  def self.punctuation
     PUNCTUATION
   end
 
@@ -166,7 +166,7 @@ module Chars
   # @return [CharSet]
   #   The symbolic character set.
   #
-  def Chars.symbols
+  def self.symbols
     SYMBOLS
   end
 
@@ -176,7 +176,7 @@ module Chars
   # @return [CharSet]
   #   The white-space character set.
   #
-  def Chars.space
+  def self.space
     SPACE
   end
 
@@ -186,7 +186,7 @@ module Chars
   # @return [CharSet]
   #   The visible character set.
   #
-  def Chars.visible
+  def self.visible
     VISIBLE
   end
 
@@ -196,7 +196,7 @@ module Chars
   # @return [CharSet]
   #   The printable character set.
   #
-  def Chars.printable
+  def self.printable
     PRINTABLE
   end
 
@@ -206,7 +206,7 @@ module Chars
   # @return [CharSet]
   #   The control-character character set.
   #
-  def Chars.control
+  def self.control
     CONTROL
   end
 
@@ -216,7 +216,7 @@ module Chars
   # @return [CharSet]
   #   The signed ASCII character set.
   #
-  def Chars.signed_ascii
+  def self.signed_ascii
     SIGNED_ASCII
   end
 
@@ -226,7 +226,7 @@ module Chars
   # @return [CharSet]
   #   The ASCII character set.
   #
-  def Chars.ascii
+  def self.ascii
     ASCII
   end
 end
