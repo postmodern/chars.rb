@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'chars/char_set'
 
 module Chars
