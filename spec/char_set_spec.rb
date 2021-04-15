@@ -10,40 +10,52 @@ describe Chars::CharSet do
   subject { described_class.new(*strings) }
 
   describe "#initialize" do
-    it "may be created with String arguments" do
-      set = described_class.new(*strings)
+    context "when given multiple String arguments" do
+      subject { described_class.new(*strings) }
 
-      expect(strings.all? { |s| set.include_char?(s) }).to be(true)
+      it "must populate the char set with the String's chars" do
+        expect(strings.all? { |s| subject.include_char?(s) }).to be(true)
+      end
     end
 
-    it "may be created with an Array of Strings" do
-      set = described_class.new(strings)
+    context "when given an Array of Strings" do
+      subject { described_class.new(strings) }
 
-      expect(strings.all? { |s| set.include_char?(s) }).to be(true)
+      it "must populate the char set with the String's chars" do
+        expect(strings.all? { |s| subject.include_char?(s) }).to be(true)
+      end
     end
 
-    it "may be created with a Range of Strings" do
-      set = described_class.new(string_range)
+    context "when given a Range of Strings" do
+      subject { described_class.new(string_range) }
 
-      expect(strings.all? { |s| set.include_char?(s) }).to be(true)
+      it "must populate the char set by enumerating over the String's chars" do
+        expect(strings.all? { |s| subject.include_char?(s) }).to be(true)
+      end
     end
 
-    it "may be created with Integer arguments" do
-      set = described_class.new(*integers)
+    context "when given multiple Integer arguments" do
+      subject { described_class.new(*integers) }
 
-      expect(integers.all? { |i| set.include?(i) }).to be(true)
+      it "must populate the char set using the Integers as bytes" do
+        expect(integers.all? { |i| subject.include?(i) }).to be(true)
+      end
     end
 
-    it "may be created with an Array of Integers" do
-      set = described_class.new(integers)
+    context "when given an Array of Integers" do
+      subject { described_class.new(integers) }
 
-      expect(integers.all? { |i| set.include?(i) }).to be(true)
+      it "must populate the char set using the Integers as bytes" do
+        expect(integers.all? { |i| subject.include?(i) }).to be(true)
+      end
     end
 
-    it "may be created with a Range of Integers" do
-      set = described_class.new(integer_range)
+    context "when given a Range of Integers" do
+      subject { described_class.new(integer_range) }
 
-      expect(integers.all? { |i| set.include?(i) }).to be(true)
+      it "must populate the char set by enumerating over the Integer's bytes" do
+        expect(integers.all? { |i| subject.include?(i) }).to be(true)
+      end
     end
   end
 
