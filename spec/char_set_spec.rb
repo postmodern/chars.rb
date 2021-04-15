@@ -47,44 +47,60 @@ describe Chars::CharSet do
     end
   end
 
-  it "should include Strings" do
-    expect(subject.include_char?('A')).to be(true)
+  describe "#include_char?" do
+    it "should include Strings" do
+      expect(subject.include_char?('A')).to be(true)
+    end
   end
 
-  it "should include Integers" do
-    expect(subject).to include(0x41)
+  describe "#include?" do
+    it "should include Integers" do
+      expect(subject).to include(0x41)
+    end
   end
 
-  it "should be able to select bytes" do
-    sub_set = subject.select_bytes { |c| c <= 0x42 }
+  describe "#select_bytes" do
+    it "should be able to select bytes" do
+      sub_set = subject.select_bytes { |c| c <= 0x42 }
 
-    expect(sub_set).to be == [0x41, 0x42]
+      expect(sub_set).to be == [0x41, 0x42]
+    end
   end
 
-  it "should be able to select chars" do
-    sub_set = subject.select_chars { |c| c <= 'B' }
+  describe "#select_chars" do
+    it "should be able to select chars" do
+      sub_set = subject.select_chars { |c| c <= 'B' }
 
-    expect(sub_set).to be == ['A', 'B']
+      expect(sub_set).to be == ['A', 'B']
+    end
   end
 
-  it "should return a random byte" do
-    expect(subject).to include(subject.random_byte)
+  describe "#random_byte" do
+    it "should return a random byte" do
+      expect(subject).to include(subject.random_byte)
+    end
   end
 
-  it "should return a random char" do
-    expect(subject.include_char?(subject.random_char)).to be(true)
+  describe "#random_char" do
+    it "should return a random char" do
+      expect(subject.include_char?(subject.random_char)).to be(true)
+    end
   end
 
-  it "should iterate over n random bytes" do
-    expect(subject.each_random_byte(10).all? { |b|
-      subject.include?(b)
-    }).to be(true)
+  describe "#each_random_byte" do
+    it "should iterate over n random bytes" do
+      expect(subject.each_random_byte(10).all? { |b|
+        subject.include?(b)
+      }).to be(true)
+    end
   end
 
-  it "should iterate over n random chars" do
-    expect(subject.each_random_char(10).all? { |c|
-      subject.include_char?(c)
-    }).to be(true)
+  describe "#each_random_char" do
+    it "should iterate over n random chars" do
+      expect(subject.each_random_char(10).all? { |c|
+        subject.include_char?(c)
+      }).to be(true)
+    end
   end
 
   describe "#random_bytes" do
@@ -176,22 +192,28 @@ describe Chars::CharSet do
     end
   end
 
-  it "should be able to be compared with another set of chars" do
-    expect(subject).to be == described_class['A'..'Z']
+  describe "#==" do
+    it "should be able to be compared with another set of chars" do
+      expect(subject).to be == described_class['A'..'Z']
+    end
   end
 
-  it "should be able to be unioned with another set of chars" do
-    super_set = (subject | described_class['D'])
+  describe "#|" do
+    it "should be able to be unioned with another set of chars" do
+      super_set = (subject | described_class['D'])
 
-    expect(super_set).to be_kind_of(described_class)
-    expect(super_set).to be == described_class['A'..'Z', 'D']
+      expect(super_set).to be_kind_of(described_class)
+      expect(super_set).to be == described_class['A'..'Z', 'D']
+    end
   end
 
-  it "should be able to be removed from another set of chars" do
-    sub_set = (subject - described_class['B'])
+  describe "#-" do
+    it "should be able to be removed from another set of chars" do
+      sub_set = (subject - described_class['B'])
 
-    expect(sub_set).to be_kind_of(described_class)
-    expect(sub_set).to be_subset(subject)
+      expect(sub_set).to be_kind_of(described_class)
+      expect(sub_set).to be_subset(subject)
+    end
   end
 
   describe "#strings_in" do
@@ -207,8 +229,10 @@ describe Chars::CharSet do
     end
   end
 
-  it "should determine if a String is made up of the characters from the char set" do
-    expect(subject).to be === "AABCBAA"
-    expect(subject).to_not be === "AA!!EE"
+  describe "#===" do
+    it "should determine if a String is made up of the characters from the char set" do
+      expect(subject).to be === "AABCBAA"
+      expect(subject).to_not be === "AA!!EE"
+    end
   end
 end
