@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'chars/chars'
+require 'chars/char_set'
 
 describe Chars::CharSet do
   let(:integer_range) { (0x41..0x43) }
