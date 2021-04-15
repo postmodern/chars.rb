@@ -41,7 +41,7 @@ module Chars
   ]
 
   # The space character set
-  SPACE = CharSet.new(' ', "\f", "\n", "\r", "\t", "\v")
+  SPACE = CharSet[' ', "\f", "\n", "\r", "\t", "\v"]
 
   # The set of printable characters (not including spaces)
   VISIBLE = ALPHA_NUMERIC | CharSet[
