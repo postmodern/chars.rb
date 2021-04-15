@@ -117,34 +117,34 @@ describe Chars::CharSet do
 
   describe "#random_bytes" do
     it "should return a random Array of bytes" do
-      bytes = subject.random_bytes(10)
+      random_bytes = subject.random_bytes(10)
 
-      expect(bytes.all? { |b| subject.include?(b) }).to be(true)
+      expect(random_bytes.all? { |b| subject.include?(b) }).to be(true)
     end
 
     context "with a range of lengths" do
       it "should return a random Array of bytes with a varying length" do
-        bytes = subject.random_bytes(5..10)
+        random_bytes = subject.random_bytes(5..10)
 
-        expect(bytes.length).to be_between(5, 10)
-        expect(bytes.all? { |b| subject.include?(b) }).to be(true)
+        expect(random_bytes.length).to be_between(5, 10)
+        expect(random_bytes.all? { |b| subject.include?(b) }).to be(true)
       end
     end
   end
 
   describe "#random_chars" do
     it "should return a random Array of chars" do
-      chars = subject.random_chars(10)
+      random_chars = subject.random_chars(10)
 
-      expect(chars.all? { |c| subject.include_char?(c) }).to be(true)
+      expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
     end
 
     context "with a range of lengths" do
       it "should return a random Array of chars with a varying length" do
-        chars = subject.random_chars(5..10)
+        random_chars = subject.random_chars(5..10)
 
-        expect(chars.length).to be_between(5, 10)
-        expect(chars.all? { |c| subject.include_char?(c) }).to be(true)
+        expect(random_chars.length).to be_between(5, 10)
+        expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
       end
     end
   end
