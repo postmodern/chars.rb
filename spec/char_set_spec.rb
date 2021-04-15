@@ -151,55 +151,59 @@ describe Chars::CharSet do
 
   describe "#random_string" do
     it "should return a random String of chars" do
-      string = subject.random_string(10)
+      random_string = subject.random_string(10)
 
-      expect(string.chars.all? { |b| subject.include_char?(b) }).to be(true)
+      expect(random_string.chars.all? { |b|
+        subject.include_char?(b)
+      }).to be(true)
     end
 
     context "with a range of lengths" do
       it "should return a random String of chars with a varying length" do
-        string = subject.random_string(5..10)
+        random_string = subject.random_string(5..10)
 
-        expect(string.length).to be_between(5, 10)
-        expect(string.chars.all? { |b| subject.include_char?(b) }).to be(true)
+        expect(random_string.length).to be_between(5, 10)
+        expect(random_string.chars.all? { |b|
+          subject.include_char?(b)
+        }).to be(true)
       end
     end
   end
   
   describe "#random_distinct_bytes" do
     it "should return a random Array of unique bytes" do
-      bytes = subject.random_distinct_bytes(10)
+      random_bytes = subject.random_distinct_bytes(10)
 
-      expect(bytes.uniq).to be == bytes
-      expect(bytes.all? { |b| subject.include?(b) }).to be(true)
+      expect(random_bytes.uniq).to be == random_bytes
+      expect(random_bytes.all? { |b| subject.include_byte?(b) }).to be(true)
     end
 
-    context "with a range of lengths" do
+    context "with a Range of lengths" do
       it "should return a random Array of unique bytes with a varying length" do
-        bytes = subject.random_distinct_bytes(5..10)
+        random_bytes = subject.random_distinct_bytes(5..10)
 
-        expect(bytes.uniq).to be == bytes
-        expect(bytes.length).to be_between(5, 10)
-        expect(bytes.all? { |b| subject.include?(b) }).to be(true)
+        expect(random_bytes.uniq).to be == random_bytes
+        expect(random_bytes.length).to be_between(5, 10)
+        expect(random_bytes.all? { |b| subject.include_byte?(b) }).to be(true)
       end
     end
   end
 
   describe "#random_distinct_chars" do
     it "should return a random Array of unique chars" do
-      chars = subject.random_distinct_chars(10)
+      random_chars = subject.random_distinct_chars(10)
 
-      expect(chars.uniq).to be == chars
-      expect(chars.all? { |c| subject.include_char?(c) }).to be(true)
+      expect(random_chars.uniq).to be == random_chars
+      expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
     end
 
     context "with a range of lengths" do
       it "should return a random Array of unique chars with a varying length" do
-        chars = subject.random_distinct_chars(5..10)
+        random_chars = subject.random_distinct_chars(5..10)
 
-        expect(chars.uniq).to be == chars
-        expect(chars.length).to be_between(5, 10)
-        expect(chars.all? { |c| subject.include_char?(c) }).to be(true)
+        expect(random_chars.uniq).to be == random_chars
+        expect(random_chars.length).to be_between(5, 10)
+        expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
       end
     end
   end

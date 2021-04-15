@@ -228,8 +228,11 @@ module Chars
     #   The randomly selected bytes.
     #
     def random_bytes(length)
-      if (length.kind_of?(Array) || length.kind_of?(Range))
-        Array.new(length.sort_by { rand }.first) { random_byte }
+      case length
+      when Array
+        Array.new(length.sample) { random_byte }
+      when Range
+        Array.new(rand(length)) { random_byte }
       else
         Array.new(length) { random_byte }
       end
@@ -245,10 +248,15 @@ module Chars
     #   The randomly selected non-repeating bytes.
     #
     def random_distinct_bytes(length)
-      if (length.kind_of?(Array) || length.kind_of?(Range))
-        self.entries.sort_by { rand }.slice(0...(length.sort_by { rand }.first))
+      shuffled_bytes = bytes.shuffle
+
+      case length
+      when Array
+        shuffled_bytes[0,length.sample]
+      when Range
+        shuffled_bytes[0,rand(length)]
       else
-        self.entries.sort_by { rand }.slice(0...length) 
+        shuffled_bytes[0,length]
       end
     end
 
