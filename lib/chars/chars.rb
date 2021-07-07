@@ -68,6 +68,8 @@ module Chars
   # @return [CharSet]
   #   The decimal-digit character set.
   #
+  # @see NUMERIC
+  #
   def self.numeric
     NUMERIC
   end
@@ -77,6 +79,8 @@ module Chars
   #
   # @return [CharSet]
   #   The octal-digit character set.
+  #
+  # @see OCTAL
   #
   def self.octal
     OCTAL
@@ -88,6 +92,8 @@ module Chars
   # @return [CharSet]
   #   The upper-case hexadecimal character set.
   #
+  # @see UPPERCASE_HEXADECIMAL
+  #
   def self.uppercase_hexadecimal
     UPPERCASE_HEXADECIMAL
   end
@@ -97,6 +103,8 @@ module Chars
   #
   # @return [CharSet]
   #   The lower-case hexadecimal character set.
+  #
+  # @see LOWERCASE_HEXADECIMAL
   #
   def self.lowercase_hexadecimal
     LOWERCASE_HEXADECIMAL
@@ -108,6 +116,8 @@ module Chars
   # @return [CharSet]
   #   The hexadecimal character set.
   #
+  # @see HEXADECIMAL
+  #
   def self.hexadecimal
     HEXADECIMAL
   end
@@ -117,6 +127,8 @@ module Chars
   #
   # @return [CharSet]
   #   The upper-case alphabetic character set.
+  #
+  # @see UPPERCASE_ALPHA
   #
   def self.uppercase_alpha
     UPPERCASE_ALPHA
@@ -128,6 +140,8 @@ module Chars
   # @return [CharSet]
   #   The lower-case alphabetic character set.
   #
+  # @see LOWERCASE_ALPHA
+  #
   def self.lowercase_alpha
     LOWERCASE_ALPHA
   end
@@ -137,6 +151,8 @@ module Chars
   #
   # @return [CharSet]
   #   The alphabetic character set.
+  #
+  # @see ALPHA
   #
   def self.alpha
     ALPHA
@@ -148,6 +164,8 @@ module Chars
   # @return [CharSet]
   #   The alpha-numeric character set.
   #
+  # @see ALPHA_NUMERIC
+  #
   def self.alpha_numeric
     ALPHA_NUMERIC
   end
@@ -157,6 +175,8 @@ module Chars
   #
   # @return [CharSet]
   #   The punctuation character set.
+  #
+  # @see PUNCTUATION
   #
   def self.punctuation
     PUNCTUATION
@@ -168,6 +188,8 @@ module Chars
   # @return [CharSet]
   #   The symbolic character set.
   #
+  # @see SYMBOLS
+  #
   def self.symbols
     SYMBOLS
   end
@@ -177,6 +199,8 @@ module Chars
   #
   # @return [CharSet]
   #   The white-space character set.
+  #
+  # @see SPACE
   #
   def self.space
     SPACE
@@ -188,6 +212,8 @@ module Chars
   # @return [CharSet]
   #   The visible character set.
   #
+  # @see VISIBLE
+  #
   def self.visible
     VISIBLE
   end
@@ -197,6 +223,8 @@ module Chars
   #
   # @return [CharSet]
   #   The printable character set.
+  #
+  # @see PRINTABLE
   #
   def self.printable
     PRINTABLE
@@ -208,6 +236,8 @@ module Chars
   # @return [CharSet]
   #   The control-character character set.
   #
+  # @see CONTROL
+  #
   def self.control
     CONTROL
   end
@@ -218,6 +248,8 @@ module Chars
   # @return [CharSet]
   #   The signed ASCII character set.
   #
+  # @see SIGNED_ASCII
+  #
   def self.signed_ascii
     SIGNED_ASCII
   end
@@ -227,6 +259,8 @@ module Chars
   #
   # @return [CharSet]
   #   The ASCII character set.
+  #
+  # @see ASCII
   #
   def self.ascii
     ASCII
