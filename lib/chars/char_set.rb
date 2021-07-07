@@ -466,7 +466,7 @@ module Chars
           # to us C programmers
           '"\0"'
         else
-          "0x%02x" % byte
+          sprintf("0x%02x",byte)
         end
       }.join(', ') + "}>"
     end
