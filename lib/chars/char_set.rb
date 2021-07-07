@@ -30,7 +30,7 @@ module Chars
     end
     
     #
-    # Creates a new character set.
+    # Creates a new {CharSet}.
     #
     # @see #initialize
     #
@@ -79,14 +79,14 @@ module Chars
     alias map_bytes map
 
     #
-    # Determines if a character is contained within the character set.
+    # Determines if a character is contained within the {CharSet}.
     #
     # @param [String] char
     #   The character to search for.
     #
     # @return [Boolean]
     #   Specifies whether the character is contained within the
-    #   character set.
+    #   {CharSet}.
     #
     def include_char?(char)
       unless char.empty?
@@ -97,24 +97,24 @@ module Chars
     end
 
     #
-    # The characters within the character set.
+    # The characters within the {CharSet}.
     #
     # @return [Array<String>]
-    #   All the characters within the character set.
+    #   All the characters within the {CharSet}.
     #
     def chars
       map { |byte| @chars[byte] }
     end
 
     #
-    # Iterates over every character within the character set.
+    # Iterates over every character within the {CharSet}.
     #
     # @yield [char]
     #   If a block is given, it will be passed each character in the
-    #   character set.
+    #   {CharSet}.
     #
     # @yieldparam [String] char
-    #   Each character in the character set.
+    #   Each character in the {CharSet}.
     #
     # @return [Enumerator]
     #   If no block is given, an enumerator object will be returned.
@@ -126,50 +126,54 @@ module Chars
     end
 
     #
-    # Selects characters from the character set.
+    # Selects characters from the {CharSet}.
     #
     # @yield [char]
     #   If a block is given, it will be used to select the characters
-    #   from the character set.
+    #   from the {CharSet}.
     #
     # @yieldparam [String] char
     #   The character to select or reject.
     #
     # @return [Array<String>]
-    #   The selected characters from the character set.
+    #   The selected characters from the {CharSet}.
     #
     def select_chars(&block)
       each_char.select(&block)
     end
 
     #
-    # Maps the characters of the character set.
+    # Maps the characters of the {CharSet}.
     #
     # @yield [char]
     #   The given block will be used to transform the characters within
-    #   the character set.
+    #   the {CharSet}.
     #
     # @yieldparam [String] char
-    #   Each character in the character set.
+    #   Each character in the {CharSet}.
     #
     # @return [Array<String>]
-    #   The mapped characters of the character set.
+    #   The mapped characters of the {CharSet}.
     #
     def map_chars(&block)
       each_char.map(&block)
     end
 
     #
+    # Returns a random byte from the {CharSet}.
+    #
     # @return [Integer]
-    #   A random byte from the character set.
+    #   A random byte value.
     #
     def random_byte
       self.entries[rand(self.length)]
     end
 
     #
+    # Returns a random character from the {CharSet}.
+    #
     # @return [String]
-    #   A random char from the character set.
+    #   A random char value.
     #
     def random_char
       @chars[random_byte]
@@ -185,7 +189,7 @@ module Chars
     #   The block will receive the random bytes.
     #
     # @yieldparam [Integer] byte
-    #   The random byte from the character set.
+    #   The random byte from the {CharSet}.
     #
     # @return [Enumerator]
     #   If no block is given, an enumerator object will be returned.
@@ -207,7 +211,7 @@ module Chars
     #   The block will receive the random characters.
     #
     # @yieldparam [String] char
-    #   The random character from the character set.
+    #   The random character from the {CharSet}.
     #
     # @return [Enumerator]
     #   If no block is given, an enumerator object will be returned.
@@ -219,7 +223,7 @@ module Chars
     end
 
     #
-    # Creates an Array of random bytes from the character set.
+    # Creates an Array of random bytes from the {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the Array of random bytes.
@@ -239,7 +243,7 @@ module Chars
     end
 
     #
-    # Creates an Array of random non-repeating bytes from the character set.
+    # Creates an Array of random non-repeating bytes from the {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the Array of random non-repeating bytes.
@@ -261,7 +265,7 @@ module Chars
     end
 
     #
-    # Creates an Array of random characters from the character set.
+    # Creates an Array of random characters from the {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the Array of random characters.
@@ -275,7 +279,7 @@ module Chars
 
     #
     # Creates a String containing randomly selected characters from the
-    # character set.
+    # {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the String of random characters.
@@ -291,7 +295,7 @@ module Chars
 
     #
     # Creates an Array of random non-repeating characters from the
-    # character set.
+    # {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the Array of random non-repeating characters.
@@ -305,7 +309,7 @@ module Chars
 
     #
     # Creates a String containing randomly selected non-repeating
-    # characters from the character set.
+    # characters from the {CharSet}.
     #
     # @param [Integer, Array, Range] length
     #   The length of the String of random non-repeating characters.
@@ -321,7 +325,7 @@ module Chars
 
     #
     # Finds sub-strings within given data that are made of characters within
-    # the character set.
+    # the {CharSet}.
     #
     # @param [String] data
     #   The data to find sub-strings within.
@@ -342,7 +346,7 @@ module Chars
     #   optional index.
     #
     # @yield [String] match
-    #   A sub-string containing the characters from the character set.
+    #   A sub-string containing the characters from the {CharSet}.
     #
     # @yield [Integer] index
     #   The index the sub-string was found at.
@@ -394,14 +398,14 @@ module Chars
     end
 
     #
-    # Creates a new CharSet object by unioning the character set with
-    # another character set.
+    # Creates a new CharSet object by unioning the {CharSet} with another
+    # {CharSet}.
     #
     # @param [CharSet, Array, Range] set
-    #   The other character set to union with.
+    #   The other {CharSet} to union with.
     #
     # @return [CharSet]
-    #   The unioned character sets.
+    #   The unioned {ChraSet}.
     #
     def |(set)
       set = CharSet.new(set) unless set.kind_of?(CharSet)
@@ -413,14 +417,14 @@ module Chars
 
     #
     # Compares the bytes within a given string with the bytes of the
-    # character set.
+    # {CharSet}.
     #
     # @param [String, Enumerable] other
-    #   The string to compare with the character set.
+    #   The string to compare with the {CharSet}.
     #
     # @return [Boolean]
     #   Specifies whether all of the bytes within the given string are
-    #   included in the character set.
+    #   included in the {CharSet}.
     #
     # @example
     #   Chars.alpha === "hello"
@@ -447,10 +451,10 @@ module Chars
     alias =~ ===
 
     #
-    # Inspects the character set.
+    # Inspects the {CharSet}.
     #
     # @return [String]
-    #   The inspected character set.
+    #   The inspected {CharSet}.
     #
     def inspect
       "#<#{self.class.name}: {" + map { |byte|
