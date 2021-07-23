@@ -86,6 +86,13 @@ set of space characters:
 
     $ gem install chars
 
+## Crystal
+
+[chars.cr] is a [Crystal] port of this library.
+
+[chars.cr]: https://github.com/postmodern/chars.cr
+[Crystal]: https://crystal-lang.org/
+
 ## License
 
 See {file:LICENSE.txt} for license information.
