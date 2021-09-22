@@ -46,7 +46,11 @@ module Chars
   ]
 
   # The space character set
-  SPACE = CharSet[' ', "\f", "\n", "\r", "\t", "\v"]
+  #
+  # @since 0.3.0
+  WHITESPACE = CharSet[' ', "\f", "\n", "\r", "\t", "\v"]
+
+  SPACE = WHITESPACE
 
   # The set of printable characters (not including spaces)
   VISIBLE = ALPHA_NUMERIC | CharSet[
@@ -209,15 +213,26 @@ module Chars
   end
 
   #
-  # The white-space character set.
+  # The whitespace character set.
   #
   # @return [CharSet]
-  #   The white-space character set.
+  #   The whitespace character set.
   #
   # @see SPACE
   #
+  # @since 0.3.0
+  #
+  def self.whitespace
+    WHITESPACE
+  end
+
+  #
+  # The whitespace character set.
+  #
+  # @see #whitespace
+  #
   def self.space
-    SPACE
+    whitespace
   end
 
   #

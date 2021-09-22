@@ -116,13 +116,21 @@ describe Chars do
     end
   end
 
-  let(:space_chars) { "\t\n\v\f\r ".chars }
+  let(:whitespace_chars) { "\t\n\v\f\r ".chars }
+
+  describe "WHITESPACE" do
+    subject { described_class::WHITESPACE }
+
+    it "must contain all white-space characters" do
+      expect(subject.chars).to match_array(whitespace_chars)
+    end
+  end
 
   describe "SPACE" do
     subject { described_class::SPACE }
 
-    it "must contain all white-space characters" do
-      expect(subject.chars).to match_array(space_chars)
+    it "must equal WHITESPACE" do
+      expect(subject).to be(described_class::WHITESPACE)
     end
   end
 
@@ -137,12 +145,12 @@ describe Chars do
   describe "PRINTABLE" do
     subject { described_class::PRINTABLE }
 
-    it "must contain all alpha-numeric, punctuation, symbols, and space characters" do
+    it "must contain all alpha-numeric, punctuation, symbols, and whitespace characters" do
       expect(subject.chars).to match_array(
         alpha_numeric_chars |
         punctuation_chars |
         symbolic_chars |
-        space_chars
+        whitespace_chars
       )
     end
   end
@@ -187,6 +195,7 @@ describe Chars do
     :visible     => :VISIBLE,
     :punctuation => :PUNCTUATION,
     :symbols     => :SYMBOLS,
+    :whitespace  => :WHITESPACE,
     :space       => :SPACE,
     :visible     => :VISIBLE,
     :printable   => :PRINTABLE,
