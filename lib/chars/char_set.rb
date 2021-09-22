@@ -334,6 +334,71 @@ module Chars
     end
 
     #
+    # Enumerates over all substrings and their indices within the given string,
+    # of minimum length and that are made up of characters from the `CharSet`.
+    #
+    # @param [String] data
+    #   The data to find sub-strings within.
+    #
+    # @param [Integer] min_length
+    #   The minimum length of sub-strings found within the given data.
+    #
+    # @yield [match, index]
+    #   The given block will be passed every matched sub-string and it's index.
+    #
+    # @yield [String] match
+    #   A sub-string containing the characters from the {CharSet}.
+    #
+    # @yield [Integer] index
+    #   The index the sub-string was found at.
+    #
+    # @return [Enumerator]
+    #   If no block is given, an Enumerator object will be returned.
+    #
+    # @since 0.3.0
+    #
+    def each_substring_with_index(data, min_length: 4)
+      unless block_given?
+        return enum_for(__method__,data, min_length: min_length)
+      end
+
+      return if data.size < min_length
+
+      index = 0
+
+      match_start = nil
+      match_end   = nil
+
+      while index < data.size
+        unless match_start
+          if self.include_char?(data[index])
+            match_start = index
+          end
+        else
+          unless self.include_char?(data[index])
+            match_end    = index
+            match_length = (match_end - match_start)
+
+            if match_length >= min_length
+              match = data[match_start,match_length]
+
+              yield match, match_start
+            end
+
+            match_start = match_end = nil
+          end
+        end
+
+        index += 1
+      end
+
+      # yield the remaining match
+      if match_start
+        yield data[match_start, data.size - match_start], match_start
+      end
+    end
+
+    #
     # Finds sub-strings within given data that are made of characters within
     # the {CharSet}.
     #

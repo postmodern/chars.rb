@@ -232,6 +232,83 @@ describe Chars::CharSet do
     end
   end
 
+  describe "#each_substring_with_index" do
+    subject { described_class.new(['A', 'B', 'C']) }
+
+    let(:string) { "....AAAA....BBBB....CCCC...." }
+
+    it "must yield each matching substring and index" do
+      expect { |b|
+        subject.each_substring_with_index(string,&b)
+      }.to yield_successive_args(
+        ["AAAA", string.index("AAAA")],
+        ["BBBB", string.index("BBBB")],
+        ["CCCC", string.index("CCCC")]
+      )
+    end
+
+    context "when the string begins with a matching substring" do
+      let(:string) { "AAAA...." }
+
+      it "must yield the first matching substring" do
+        expect(subject.each_substring_with_index(string).first).to eq(
+          ["AAAA", 0]
+        )
+      end
+    end
+
+    context "when the string ends with a matching substring" do
+      let(:string) { "AAAA....BBBB....CCCC" }
+
+      it "must yield the last matching substring" do
+        expect(subject.each_substring_with_index(string).to_a.last).to eq(
+          ["CCCC", string.rindex("CCCC")]
+        )
+      end
+    end
+
+    context "when the entire string is a matching substring" do
+      let(:string) { "AAAAAAAA" }
+
+      it "must yield the entire string" do
+        expect { |b|
+          subject.each_substring_with_index(string,&b)
+        }.to yield_successive_args( [string, 0] )
+      end
+    end
+
+    context "when the matching substrings are shorter than the min_length" do
+      let(:min_length) { 2 }
+
+      let(:string) { "AA..B...CC.."}
+
+      it "must ignore the substrings shorter than min_length" do
+        expect { |b|
+          subject.each_substring_with_index(string, min_length: min_length, &b)
+        }.to yield_successive_args(
+          ["AA", string.index("AA")],
+          ["CC", string.index("CC")]
+        )
+      end
+    end
+
+    context "when min_length 0" do
+      let(:min_length) { 0 }
+
+      let(:string) { "A.BB..CCC..."}
+
+      it "must yield all matching substrings, regardless of length" do
+        expect { |b|
+          subject.each_substring_with_index(string, min_length: min_length, &b)
+        }.to yield_successive_args(
+          ["A",   string.index("A")],
+          ["BB",  string.index("BB")],
+          ["CCC", string.index("CCC")]
+        )
+      end
+    end
+  end
+
   describe "#strings_in" do
     subject { described_class.new(['A', 'B', 'C']) }
 
