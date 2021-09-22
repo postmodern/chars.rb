@@ -6,6 +6,10 @@ describe Chars do
     expect(described_class::NUMERIC).to be =~ '0123456789'
   end
 
+  it "should provide a digits alias to numeric" do
+    expect(described_class::DIGITS).to be(described_class::NUMERIC)
+  end
+
   it "should provide an octal CharSet" do
     expect(described_class::OCTAL).to be =~ "01234567"
   end

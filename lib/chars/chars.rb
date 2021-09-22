@@ -6,6 +6,11 @@ module Chars
   # The numeric decimal character set
   NUMERIC = CharSet['0'..'9']
 
+  # @see NUMERIC
+  #
+  # @since 0.3.0
+  DIGITS = NUMERIC
+
   # The octal character set
   OCTAL = CharSet['0'..'7']
 
@@ -72,6 +77,15 @@ module Chars
   #
   def self.numeric
     NUMERIC
+  end
+
+  #
+  # @see numeric
+  #
+  # @since 0.3.0
+  #
+  def self.digits
+    numeric
   end
 
   #
