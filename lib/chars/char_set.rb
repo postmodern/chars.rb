@@ -507,45 +507,27 @@ module Chars
     #   If no block is given, an Array or Hash of sub-strings is returned.
     #
     def strings_in(data,options={},&block)
+      kwargs = {min_length: options.fetch(:length,4)}
+
       unless block
         if options[:offsets]
-          found = {}
-          block = lambda { |offset,substring| found[offset] = substring }
-        else
-          found = []
-          block = lambda { |substring| found << substring }
-        end
+          hash = {}
 
-        strings_in(data,options,&block)
-        return found
+          each_substring_with_index(data,**kwargs) do |substring,index|
+            hash[index] = substring
+          end
+
+          return hash
+        else
+          return substrings(data,**kwargs)
+        end
       end
 
-      min_length = options.fetch(:length,4)
-      return if data.length < min_length
-
-      index = 0
-
-      while index <= (data.length - min_length)
-        if self === data[index,min_length]
-          sub_index = (index + min_length)
-
-          while self.include_char?(data[sub_index,1])
-            sub_index += 1
-          end
-
-          match = data[index...sub_index]
-
-          case block.arity
-          when 2
-            yield match, index
-          else
-            yield match
-          end
-
-          index = sub_index
-        else
-          index += 1
-        end
+      case block.arity
+      when 2
+        each_substring_with_index(data,**kwargs,&block)
+      else
+        each_substring(data,**kwargs,&block)
       end
     end
 
