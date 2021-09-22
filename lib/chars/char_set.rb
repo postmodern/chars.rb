@@ -515,13 +515,7 @@ module Chars
 
       unless block
         if options[:offsets]
-          hash = {}
-
-          each_substring_with_index(data,**kwargs) do |substring,index|
-            hash[index] = substring
-          end
-
-          return hash
+          return Hash[substrings_with_indexes(data,**kwargs)]
         else
           return substrings(data,**kwargs)
         end
