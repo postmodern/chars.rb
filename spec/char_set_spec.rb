@@ -233,15 +233,84 @@ describe Chars::CharSet do
   end
 
   describe "#strings_in" do
-    it "should find one sub-string from a String belonging to the char set" do
-      expect(subject.strings_in("AAAA")).to be == ["AAAA"]
+    subject { described_class.new(['A', 'B', 'C']) }
+
+    let(:string) { "AAAA....BBBB....CCCC...." }
+
+    context "when given a block" do
+      it "should find sub-strings from a String belonging to the char set" do
+        expect { |b|
+          subject.strings_in(string,&b)
+        }.to yield_successive_args(
+          "AAAA",
+          "BBBB",
+          "CCCC"
+        )
+      end
+
+      it "must find sub-strings of a minimum length of 4" do
+        expect { |b|
+          subject.strings_in("A...BBB...CCCC",&b)
+        }.to yield_successive_args("CCCC")
+      end
+
+      context "and when the whole string matches the char set" do
+        it "should find one sub-string from a String belonging to the char set" do
+          expect { |b|
+            subject.strings_in("AAAA",&b)
+          }.to yield_successive_args("AAAA")
+        end
+      end
+
+      context "when the :length option is given" do
+        it "must find sub-strings of the given minimum length" do
+          expect { |b|
+            subject.strings_in("AAAA...BBBB...CCCCC", :length => 5, &b)
+          }.to yield_successive_args("CCCCC")
+        end
+      end
+
+      context "and when the block takes two arguments" do
+        it "must yield the sub-strings and their indexes" do
+          yielded_args = []
+
+          subject.strings_in(string) do |substring,index|
+            yielded_args << [substring, index]
+          end
+
+          expect(yielded_args).to eq(
+            [
+              ['AAAA', string.index('AAAA')],
+              ['BBBB', string.index('BBBB')],
+              ['CCCC', string.index('CCCC')]
+            ]
+          )
+        end
+      end
     end
 
-    it "should find sub-strings from a String belonging to the char set" do
-      expect(subject.strings_in("AAAA!B!CCCCCC")).to be == [
-        "AAAA",
-        "CCCCCC"
-      ]
+    context "when no block is given" do
+      it "must return an Array of sub-strings" do
+        expect(subject.strings_in(string)).to eq(
+          [
+            "AAAA",
+            "BBBB",
+            "CCCC"
+          ]
+        )
+      end
+
+      context "when given the :offset option" do
+        it "must return a Hash of the substrings and their indexes" do
+          expect(subject.strings_in(string, :offsets => true)).to eq(
+            {
+              "AAAA" => string.index("AAAA"),
+              "BBBB" => string.index("BBBB"),
+              "CCCC" => string.index("CCCC")
+            }
+          )
+        end
+      end
     end
   end
 
