@@ -506,6 +506,10 @@ module Chars
     # @return [Array, Hash]
     #   If no block is given, an Array or Hash of sub-strings is returned.
     #
+    # @deprecated
+    #   Use {#each_substring_with_index}, {#substrings_with_index},
+    #   {#each_substring}, or {#substrings} instead.
+    #
     def strings_in(data,options={},&block)
       kwargs = {min_length: options.fetch(:length,4)}
 
