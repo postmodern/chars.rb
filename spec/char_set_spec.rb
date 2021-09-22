@@ -309,6 +309,54 @@ describe Chars::CharSet do
     end
   end
 
+  describe "#substrings_with_indexes" do
+    subject { described_class.new(['A', 'B', 'C']) }
+
+    let(:string) { "....AAAA....BBBB....CCCC...." }
+
+    it "must return the Array of substrings and their indexes" do
+      expect(subject.substrings_with_indexes(string)).to eq(
+        [
+          ["AAAA", string.index("AAAA")],
+          ["BBBB", string.index("BBBB")],
+          ["CCCC", string.index("CCCC")]
+        ]
+      )
+    end
+  end
+
+  describe "#each_substring(&block : (String) ->)" do
+    subject { described_class.new(['A', 'B', 'C']) }
+
+    let(:string) { "....AAAA....BBBB....CCCC...." }
+
+    it "must yield each matching substring" do
+      expect { |b|
+        subject.each_substring(string,&b)
+      }.to yield_successive_args(
+        "AAAA",
+        "BBBB",
+        "CCCC"
+      )
+    end
+  end
+
+  describe "#substrings" do
+    subject { described_class.new(['A', 'B', 'C']) }
+
+    let(:string) { "....AAAA....BBBB....CCCC...." }
+
+    it "must return the Array of matching substrings" do
+      expect(subject.substrings(string)).to eq(
+        [
+          "AAAA",
+          "BBBB",
+          "CCCC"
+        ]
+      )
+    end
+  end
+
   describe "#strings_in" do
     subject { described_class.new(['A', 'B', 'C']) }
 

@@ -335,7 +335,7 @@ module Chars
 
     #
     # Enumerates over all substrings and their indices within the given string,
-    # of minimum length and that are made up of characters from the `CharSet`.
+    # of minimum length and that are made up of characters from the {CharSet}.
     #
     # @param [String] data
     #   The data to find sub-strings within.
@@ -396,6 +396,83 @@ module Chars
       if match_start
         yield data[match_start, data.size - match_start], match_start
       end
+    end
+
+    #
+    # Returns an Array of all substrings and their indices within the given
+    # string, of minimum length and that are made up of characters from the
+    # {CharSet}.
+    #
+    # @param [String] data
+    #   The data to find sub-strings within.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Keyword arguments for {#each_substring_with_index}.
+    #
+    # @option kwargs [Integer] :min_length
+    #   The minimum length of sub-strings found within the given data.
+    #
+    # @return [Array<(String, Integer)>]
+    #   Tthe array of substrings and their indices within the given `data`.
+    #
+    # @see #each_substring_with_index
+    #
+    # @since 0.3.0
+    #
+    def substrings_with_indexes(data,**kwargs)
+      each_substring_with_index(data,**kwargs).to_a
+    end
+
+    #
+    # Enumerates over all substrings within the given string, of minimum length
+    # and that are made up of characters from the {CharSet}.
+    #
+    # @param [String] data
+    #   The data to find sub-strings within.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Keyword arguments for {#each_substring_with_index}.
+    #
+    # @option kwargs [Integer] :min_length
+    #   The minimum length of sub-strings found within the given data.
+    #
+    # @return [Enumerator]
+    #   If no block is given, an Enumerator object will be returned.
+    #
+    # @see #each_substring_with_index
+    #
+    # @since 0.3.0
+    #
+    def each_substring(data,**kwargs)
+      return enum_for(__method__,data,**kwargs) unless block_given?
+
+      each_substring_with_index(data,**kwargs) do |substring,index|
+        yield substring
+      end
+    end
+
+    #
+    # Returns an Array of all substrings within the given string,
+    # of minimum length and that are made up of characters from the {CharSet}.
+    #
+    # @param [String] data
+    #   The data to find sub-strings within.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Keyword arguments for {#each_substring_with_index}.
+    #
+    # @option kwargs [Integer] :min_length
+    #   The minimum length of sub-strings found within the given data.
+    #
+    # @see #each_substring
+    #
+    # @return [Array<String>]
+    #   Tthe array of substrings within the given `data`.
+    #
+    # @since 0.3.0
+    #
+    def substrings(data,**kwargs)
+      each_substring(data,**kwargs).to_a
     end
 
     #
