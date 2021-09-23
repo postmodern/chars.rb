@@ -192,7 +192,6 @@ describe Chars do
     :lowercase_alpha => :LOWERCASE_ALPHA,
     :alpha => :ALPHA,
 
-    :visible     => :VISIBLE,
     :punctuation => :PUNCTUATION,
     :symbols     => :SYMBOLS,
     :whitespace  => :WHITESPACE,
