@@ -28,7 +28,17 @@ module Chars
         end
       end
     end
-    
+
+    #
+    # Initializes the copy of another {CharSet} object.
+    #
+    # @param [CharSet] other
+    #   The other {CharSet} object.
+    #
+    def initialize_copy(other)
+      @chars = other.instance_variable_get('@chars').dup
+    end
+
     #
     # Creates a new {CharSet}.
     #
