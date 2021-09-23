@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'chars/char_set'
 
+require 'securerandom'
+
 describe Chars::CharSet do
   let(:integer_range) { (0x41..0x43) }
   let(:string_range)  { ('A'..'Z') }
@@ -91,119 +93,310 @@ describe Chars::CharSet do
     it "should return a random byte" do
       expect(subject).to include(subject.random_byte)
     end
+
+    context "when given random: rng" do
+      let(:rng) { SecureRandom }
+
+      it "must call the #rand method" do
+        expect(rng).to receive(:rand).with(subject.length).and_return(1)
+
+        subject.random_byte(random: rng)
+      end
+    end
   end
 
   describe "#random_char" do
     it "should return a random char" do
       expect(subject.include_char?(subject.random_char)).to be(true)
     end
+
+    context "when given random: rng" do
+      let(:rng) { SecureRandom }
+
+      it "must call the #rand method" do
+        expect(rng).to receive(:rand).with(subject.length).and_return(1)
+
+        subject.random_char(random: rng)
+      end
+    end
   end
 
   describe "#each_random_byte" do
+    let(:n) { 10 }
+
     it "should iterate over n random bytes" do
-      expect(subject.each_random_byte(10).all? { |b|
+      expect(subject.each_random_byte(n).all? { |b|
         subject.include?(b)
       }).to be(true)
+    end
+
+    context "when given random: rng" do
+      let(:rng) { SecureRandom }
+
+      it "must call the #rand method n times" do
+        n.times do
+          expect(rng).to receive(:rand).with(subject.length).and_return(1)
+        end
+
+        subject.each_random_byte(n, random: rng) { |b| }
+      end
     end
   end
 
   describe "#each_random_char" do
+    let(:n) { 10 }
+
     it "should iterate over n random chars" do
       expect(subject.each_random_char(10).all? { |c|
         subject.include_char?(c)
       }).to be(true)
     end
+
+    context "when given random: rng" do
+      let(:rng) { SecureRandom }
+
+      it "must call the #rand method n times" do
+        n.times do
+          expect(rng).to receive(:rand).with(subject.length).and_return(1)
+        end
+
+        subject.each_random_char(n, random: rng) { |c| }
+      end
+    end
   end
 
   describe "#random_bytes" do
-    it "should return a random Array of bytes" do
-      random_bytes = subject.random_bytes(10)
+    context "when given an Integer" do
+      let(:n) { 10 }
 
-      expect(random_bytes.all? { |b| subject.include?(b) }).to be(true)
+      it "should return a random Array of bytes" do
+        random_bytes = subject.random_bytes(n)
+
+        expect(random_bytes.all? { |b| subject.include?(b) }).to be(true)
+      end
+
+      context "when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must call the #rand method n times" do
+          n.times do
+            expect(rng).to receive(:rand).with(subject.length).and_return(1)
+          end
+
+          subject.random_bytes(n, random: rng)
+        end
+      end
     end
 
-    context "with a range of lengths" do
-      it "should return a random Array of bytes with a varying length" do
-        random_bytes = subject.random_bytes(5..10)
+    context "when given a Range of lengths" do
+      let(:lengths) { 5..10 }
 
-        expect(random_bytes.length).to be_between(5, 10)
+      it "should return a random Array of bytes with a varying length" do
+        random_bytes = subject.random_bytes(lengths)
+
+        expect(random_bytes.length).to be_between(lengths.begin, lengths.end)
         expect(random_bytes.all? { |b| subject.include?(b) }).to be(true)
+      end
+
+      context "and when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must pass random: to Range#sample" do
+          expect(rng).to receive(:rand).and_return(rand(lengths)).at_least(:once)
+
+          random_bytes = subject.random_bytes(lengths, random: rng)
+
+          expect(random_bytes.length).to be_between(lengths.begin, lengths.end)
+        end
       end
     end
   end
 
   describe "#random_chars" do
-    it "should return a random Array of chars" do
-      random_chars = subject.random_chars(10)
+    context "when given an Integer" do
+      let(:n) { 10 }
 
-      expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
+      it "should return a random Array of chars" do
+        random_chars = subject.random_chars(n)
+
+        expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
+      end
+
+      context "when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must call the #rand method n times" do
+          n.times do
+            expect(rng).to receive(:rand).with(subject.length).and_return(rand(n))
+          end
+
+          subject.random_chars(n, random: rng)
+        end
+      end
     end
 
-    context "with a range of lengths" do
-      it "should return a random Array of chars with a varying length" do
-        random_chars = subject.random_chars(5..10)
+    context "when given a Range of lengths" do
+      let(:lengths) { 5..10 }
 
-        expect(random_chars.length).to be_between(5, 10)
+      it "should return a random Array of chars with a varying length" do
+        random_chars = subject.random_chars(lengths)
+
+        expect(random_chars.length).to be_between(lengths.begin, lengths.end)
         expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
+      end
+
+      context "and when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must pass random: to Range#sample" do
+          expect(rng).to receive(:rand).and_return(rand(lengths)).at_least(:once)
+
+          random_chars = subject.random_chars(lengths, random: rng)
+
+          expect(random_chars.length).to be_between(lengths.begin, lengths.end)
+        end
       end
     end
   end
 
   describe "#random_string" do
-    it "should return a random String of chars" do
-      random_string = subject.random_string(10)
+    context "when given an Integer" do
+      let(:n) { 10 }
 
-      expect(random_string.chars.all? { |b|
-        subject.include_char?(b)
-      }).to be(true)
-    end
+      it "should return a random String of chars" do
+        random_string = subject.random_string(n)
 
-    context "with a range of lengths" do
-      it "should return a random String of chars with a varying length" do
-        random_string = subject.random_string(5..10)
-
-        expect(random_string.length).to be_between(5, 10)
         expect(random_string.chars.all? { |b|
           subject.include_char?(b)
         }).to be(true)
+      end
+
+      context "when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must call the #rand method n times" do
+          expect(rng).to receive(:rand).with(subject.length).and_return(rand(n)).at_least(:once)
+
+          subject.random_chars(n, random: rng)
+        end
+      end
+    end
+
+    context "when given a Range of lengths" do
+      let(:lengths) { 5..10 }
+
+      it "should return a random String of chars with a varying length" do
+        random_string = subject.random_string(lengths)
+
+        expect(random_string.length).to be_between(lengths.begin, lengths.end)
+        expect(random_string.chars.all? { |b|
+          subject.include_char?(b)
+        }).to be(true)
+      end
+
+      context "and when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must pass random: to Range#sample" do
+          expect(rng).to receive(:rand).and_return(rand(lengths)).at_least(:once)
+
+          random_string = subject.random_string(lengths, random: rng)
+
+          expect(random_string.length).to be_between(lengths.begin, lengths.end)
+        end
       end
     end
   end
   
   describe "#random_distinct_bytes" do
-    it "should return a random Array of unique bytes" do
-      random_bytes = subject.random_distinct_bytes(10)
+    context "when given an Integer" do
+      let(:n) { 10 }
 
-      expect(random_bytes.uniq).to be == random_bytes
-      expect(random_bytes.all? { |b| subject.include_byte?(b) }).to be(true)
+      it "should return a random Array of unique bytes" do
+        random_bytes = subject.random_distinct_bytes(n)
+
+        expect(random_bytes.length).to eq(n)
+        expect(random_bytes.uniq).to be == random_bytes
+        expect(random_bytes.all? { |b| subject.include_byte?(b) }).to be(true)
+      end
+
+      context "when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must call the Array#shuffle with random: rng" do
+          expect_any_instance_of(Array).to receive(:shuffle).with(random: rng).and_return(subject.bytes.shuffle)
+
+          subject.random_distinct_bytes(n, random: rng)
+        end
+      end
     end
 
     context "with a Range of lengths" do
+      let(:lengths) { 5..10 }
+
       it "should return a random Array of unique bytes with a varying length" do
-        random_bytes = subject.random_distinct_bytes(5..10)
+        random_bytes = subject.random_distinct_bytes(lengths)
 
         expect(random_bytes.uniq).to be == random_bytes
-        expect(random_bytes.length).to be_between(5, 10)
+        expect(random_bytes.length).to be_between(lengths.begin, lengths.end)
         expect(random_bytes.all? { |b| subject.include_byte?(b) }).to be(true)
+      end
+
+      context "and when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must pass random: to Range#sample" do
+          expect(rng).to receive(:rand).and_return(rand(lengths)).at_least(:once)
+
+          random_bytes = subject.random_bytes(lengths, random: rng)
+
+          expect(random_bytes.length).to be_between(lengths.begin, lengths.end)
+        end
       end
     end
   end
 
   describe "#random_distinct_chars" do
+    let(:n) { 10 }
+
     it "should return a random Array of unique chars" do
-      random_chars = subject.random_distinct_chars(10)
+      random_chars = subject.random_distinct_chars(n)
 
       expect(random_chars.uniq).to be == random_chars
       expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
     end
 
-    context "with a range of lengths" do
+    context "when given random: rng" do
+      let(:rng) { SecureRandom }
+
+      it "must call the Array#shuffle with random: rng" do
+        expect_any_instance_of(Array).to receive(:shuffle).with(random: rng).and_return(subject.bytes.shuffle(random: rng))
+
+        subject.random_distinct_bytes(n, random: rng)
+      end
+    end
+
+    context "when given a Range of lengths" do
+      let(:lengths) { 5..10 }
+
       it "should return a random Array of unique chars with a varying length" do
-        random_chars = subject.random_distinct_chars(5..10)
+        random_chars = subject.random_distinct_chars(lengths)
 
         expect(random_chars.uniq).to be == random_chars
-        expect(random_chars.length).to be_between(5, 10)
+        expect(random_chars.length).to be_between(lengths.begin, lengths.end)
         expect(random_chars.all? { |c| subject.include_char?(c) }).to be(true)
+      end
+
+      context "and when given random: rng" do
+        let(:rng) { SecureRandom }
+
+        it "must pass random: to Range#sample" do
+          expect(rng).to receive(:rand).and_return(rand(lengths)).at_least(:once)
+
+          random_bytes = subject.random_bytes(lengths, random: rng)
+
+          expect(random_bytes.length).to be_between(lengths.begin, lengths.end)
+        end
       end
     end
   end

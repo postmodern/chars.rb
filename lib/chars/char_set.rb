@@ -172,21 +172,30 @@ module Chars
     #
     # Returns a random byte from the {CharSet}.
     #
+    # @param [Random, SecureRandom] random
+    #   The random number generator to use.
+    #
     # @return [Integer]
     #   A random byte value.
     #
-    def random_byte
-      self.entries[rand(self.length)]
+    def random_byte(random: Random)
+      self.entries[random.rand(self.length)]
     end
 
     #
     # Returns a random character from the {CharSet}.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
+    #
     # @return [String]
     #   A random char value.
     #
-    def random_char
-      @chars[random_byte]
+    def random_char(**kwargs)
+      @chars[random_byte(**kwargs)]
     end
 
     #
@@ -194,6 +203,12 @@ module Chars
     #
     # @param [Integer] n
     #   Specifies how many times to pass a random byte to the block.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
     #
     # @yield [byte]
     #   The block will receive the random bytes.
@@ -204,10 +219,12 @@ module Chars
     # @return [Enumerator]
     #   If no block is given, an enumerator object will be returned.
     #
-    def each_random_byte(n,&block)
-      return enum_for(__method__,n) unless block_given?
+    def each_random_byte(n,**kwargs,&block)
+      return enum_for(__method__,n,**kwargs) unless block_given?
 
-      n.times { yield random_byte }
+      n.times do
+        yield random_byte(**kwargs)
+      end
       return nil
     end
 
@@ -216,6 +233,12 @@ module Chars
     #
     # @param [Integer] n
     #   Specifies how many times to pass a random character to the block.
+    #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
     #
     # @yield [char]
     #   The block will receive the random characters.
@@ -226,10 +249,12 @@ module Chars
     # @return [Enumerator]
     #   If no block is given, an enumerator object will be returned.
     #
-    def each_random_char(n,&block)
-      return enum_for(__method__,n) unless block_given?
+    def each_random_char(n,**kwargs,&block)
+      return enum_for(__method__,n,**kwargs) unless block_given?
 
-      each_random_byte(n) { |byte| yield @chars[byte] }
+      each_random_byte(n,**kwargs) do |byte|
+        yield @chars[byte]
+      end
     end
 
     #
@@ -238,17 +263,24 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the Array of random bytes.
     #
+    # @param [Random, SecureRandom] random
+    #   The random number generator to use.
+    #
     # @return [Array<Integer>]
     #   The randomly selected bytes.
     #
-    def random_bytes(length)
+    def random_bytes(length, random: Random)
       case length
       when Array
-        Array.new(length.sample) { random_byte }
+        Array.new(length.sample(random: random)) do
+          random_byte(random: random)
+        end
       when Range
-        Array.new(rand(length)) { random_byte }
+        Array.new(random.rand(length)) do
+          random_byte(random: random)
+        end
       else
-        Array.new(length) { random_byte }
+        Array.new(length) { random_byte(random: random) }
       end
     end
 
@@ -258,17 +290,20 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the Array of random non-repeating bytes.
     #
+    # @param [Random, SecureRandom] random
+    #   The random number generator to use.
+    #
     # @return [Array<Integer>]
     #   The randomly selected non-repeating bytes.
     #
-    def random_distinct_bytes(length)
-      shuffled_bytes = bytes.shuffle
+    def random_distinct_bytes(length, random: Random)
+      shuffled_bytes = bytes.shuffle(random: random)
 
       case length
       when Array
-        shuffled_bytes[0,length.sample]
+        shuffled_bytes[0,length.sample(random: random)]
       when Range
-        shuffled_bytes[0,rand(length)]
+        shuffled_bytes[0,random.rand(length)]
       else
         shuffled_bytes[0,length]
       end
@@ -280,11 +315,17 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the Array of random characters.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
+    #
     # @return [Array<String>]
     #   The randomly selected characters.
     #
-    def random_chars(length)
-      random_bytes(length).map { |byte| @chars[byte] }
+    def random_chars(length,**kwargs)
+      random_bytes(length,**kwargs).map { |byte| @chars[byte] }
     end
 
     #
@@ -294,13 +335,19 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the String of random characters.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
+    #
     # @return [String]
     #   The String of randomly selected characters.
     #
     # @see random_chars
     #
-    def random_string(length)
-      random_chars(length).join
+    def random_string(length,**kwargs)
+      random_chars(length,**kwargs).join
     end
 
     #
@@ -310,11 +357,17 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the Array of random non-repeating characters.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
+    #
     # @return [Array<Integer>]
     #   The randomly selected non-repeating characters.
     #
-    def random_distinct_chars(length)
-      random_distinct_bytes(length).map { |byte| @chars[byte] }
+    def random_distinct_chars(length,**kwargs)
+      random_distinct_bytes(length,**kwargs).map { |byte| @chars[byte] }
     end
 
     #
@@ -324,13 +377,19 @@ module Chars
     # @param [Integer, Array, Range] length
     #   The length of the String of random non-repeating characters.
     #
+    # @param [Hash{Symbol => Object}] kwargs
+    #   Additional keyword arguments.
+    #
+    # @option kwargs [Random, SecureRandom] :random
+    #   The random number generator to use.
+    #
     # @return [String]
     #   The String of randomly selected non-repeating characters.
     #
     # @see random_distinct_chars
     #
-    def random_distinct_string(length)
-      random_distinct_chars(length).join
+    def random_distinct_string(length,**kwargs)
+      random_distinct_chars(length,**kwargs).join
     end
 
     #
