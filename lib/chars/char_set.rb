@@ -1,3 +1,5 @@
+require 'chars/string_enumerator'
+
 require 'set'
 
 module Chars
@@ -586,6 +588,52 @@ module Chars
       else
         each_substring(data,**kwargs,&block)
       end
+    end
+
+    #
+    # Enumerates through every possible string belonging to the {CharSet} and
+    # of the given length.
+    #
+    # @param [Range, Array, Integer] length
+    #   The desired length(s) of each string.
+    #
+    # @yield [string]
+    #   The given block will be passed each sequential string.
+    #
+    # @yieldparam [String] string
+    #   A string belonging to {#char_set} and `length` long.
+    #
+    # @return [Enumerator]
+    #   If no block is given, an Enumerator will be returned.
+    #
+    # @since 0.3.0
+    #
+    def each_string_of_length(length,&block)
+      return enum_for(__method__,length) unless block
+
+      case length
+      when Range, Array
+        length.each do |len|
+          StringEnumerator.new(self,len).each(&block)
+        end
+      else
+        StringEnumerator.new(self,length).each(&block)
+      end
+    end
+
+    #
+    # Returns an Enumerator that enumerates through every possible string
+    # belonging to the {CharSEt} and of the given length.
+    #
+    # @param [Range, Array, Integer] length
+    #   The desired length(s) of each string.
+    #
+    # @return [Enumerator]
+    #
+    # @see #each_string
+    #
+    def strings_of_length(length)
+      each_string_of_length(length)
     end
 
     #

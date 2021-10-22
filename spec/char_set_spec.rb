@@ -632,6 +632,72 @@ describe Chars::CharSet do
     end
   end
 
+  describe "#each_string" do
+    let(:length) { 2 }
+
+    let(:expected_strings) do
+      Chars::StringEnumerator.new(subject,length).to_a
+    end
+
+    context "when a block is given" do
+      it "must enumerate through the strings belonging to the character set of the desired length" do
+        expect { |b|
+          subject.each_string_of_length(length,&b)
+        }.to yield_successive_args(*expected_strings)
+      end
+
+      context "when given a Range of lengths" do
+        let(:length) { 1..2 }
+
+        let(:expected_strings) do
+          Chars::StringEnumerator.new(subject,1).to_a +
+          Chars::StringEnumerator.new(subject,2).to_a
+        end
+
+        it "must yield strings of lengths in the Range of lengths" do
+          expect { |b|
+            subject.each_string_of_length(length,&b)
+          }.to yield_successive_args(*expected_strings)
+        end
+      end
+
+      context "when given an Array of lengths" do
+        let(:length) { [1,2] }
+
+        let(:expected_strings) do
+          Chars::StringEnumerator.new(subject,1).to_a +
+          Chars::StringEnumerator.new(subject,2).to_a
+        end
+
+        it "must yield strings of lengths in the Range of lengths" do
+          expect { |b|
+            subject.each_string_of_length(length,&b)
+          }.to yield_successive_args(*expected_strings)
+        end
+      end
+    end
+
+    context "when no block is given" do
+      it "must return an Enumerator" do
+        expect(subject.each_string_of_length(length)).to be_kind_of(Enumerator)
+        expect(subject.each_string_of_length(length).to_a).to eq(expected_strings)
+      end
+    end
+  end
+
+  describe "#strings_of_length" do
+    let(:length) { 2 }
+
+    let(:expected_strings) do
+      Chars::StringEnumerator.new(subject,length).to_a
+    end
+
+    it "must return an Enumerator" do
+      expect(subject.strings_of_length(length)).to be_kind_of(Enumerator)
+      expect(subject.strings_of_length(length).to_a).to eq(expected_strings)
+    end
+  end
+
   describe "#===" do
     it "should determine if a String is made up of the characters from the char set" do
       expect(subject).to be === "AABCBAA"
