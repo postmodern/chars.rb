@@ -86,6 +86,18 @@ set of space characters:
 
     $ gem install chars
 
+### gemspec
+
+```ruby
+gem.add_dependency 'chars', '~> 0.2'
+```
+
+### Gemfile
+
+```ruby
+gem 'chars', '~> 0.2'
+```
+
 ## Crystal
 
 [chars.cr] is a [Crystal] port of this library.
