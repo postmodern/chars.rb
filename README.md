@@ -93,6 +93,17 @@ Chars.printable.substrings(ls)
 # => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
 ```
 
+Generate all strings from a character set of a given length:
+
+```ruby
+passwords = Chars.visible.strings_of_length(6)
+passwords.each { |password| puts password }
+# AAAAAA
+# AAAAAB
+# AAAAAC
+# ...
+```
+
 ## Requirements
 
 * [ruby](https://www.ruby-lang.org/) >= 2.0.0
