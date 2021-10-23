@@ -80,7 +80,7 @@ set of space characters:
 
 ## Requirements
 
-* [ruby](http://www.ruby-lang.org/) >= 2.0.0
+* [ruby](https://www.ruby-lang.org/) >= 2.0.0
 
 ## Install
 
