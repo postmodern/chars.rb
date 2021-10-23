@@ -1,3 +1,15 @@
+### 0.3.0 / 2021-10-23
+
+* Added {Chars::WHITESPACE}.
+* Added {Chars::DIGITS}.
+* Added {Chars::CharSet#each_substring_with_index}.
+* Added {Chars::CharSet#substrings_with_indexes}.
+* Added {Chars::CharSet#each_substring}.
+* Added {Chars::CharSet#substrings}.
+* Added {Chars::CharSet#each_string_of_length}.
+* Added {Chars::CharSet#strings_of_length}.
+* Added {Chars::StringEnumerator}.
+
 ### 0.2.4 / 2021-10-22
 
 * Require [ruby] >= 2.0.0.
