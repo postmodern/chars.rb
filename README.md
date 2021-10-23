@@ -77,6 +77,14 @@ Chars.all.random_string(10)
 # => "\xc2h\xad\xccm7\x1e6J\x13"
 ```
 
+Generate a secure password:
+
+```ruby
+require 'securerandom'
+Chars.visible.random_string(10..14, random: SecureRandom)
+# => ".*$X=D*XK2h8gC"
+```
+
 Return a random String with a random length between 5 and 10, from the
 set of space characters:
 
