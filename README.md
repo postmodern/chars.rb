@@ -88,7 +88,7 @@ Chars.space.random_string(5..10)
 Find all sub-strings that belong to a character set within a String:
 
 ```ruby
-ls = File.read('/bin/ls')
+ls = File.binread('/bin/ls')
 Chars.printable.substrings(ls)
 # => 
 # ["/lib64/ld-linux-x86-64.so.2",
@@ -103,7 +103,7 @@ Find all sub-strings that belong to a character set within a String, with
 indexes:
 
 ```ruby
-ls = File.read('/bin/ls')
+ls = File.binread('/bin/ls')
 Chars.printable.substrings_with_indexes(ls)
 # =>
 # [["/lib64/ld-linux-x86-64.so.2", 792],
