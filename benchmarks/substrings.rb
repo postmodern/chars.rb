@@ -11,6 +11,10 @@ STRING  = File.open('/usr/bin/openssl','rb') do |file|
           end
 
 Benchmark.bm(41) do |b|
+  b.report('Chars::CharSet#each_substring_with_index') do
+    CHARSET.each_substring_with_index(STRING) { |string,index| }
+  end
+
   b.report('Chars::CharSet#each_substring') do
     CHARSET.each_substring(STRING) { |string| }
   end
