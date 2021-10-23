@@ -5,7 +5,6 @@
 * [Source](https://github.com/postmodern/chars.rb#readme)
 * [Issues](https://github.com/postmodern/chars.rb/issues)
 * [Documentation](https://rubydoc.info/gems/chars)
-* [Email](mailto:postmodern.mod3 at gmail.com)
 
 ## Description
 
