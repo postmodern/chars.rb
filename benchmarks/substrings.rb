@@ -6,9 +6,7 @@ require 'chars'
 require 'benchmark'
 
 CHARSET = Chars::ALPHA_NUMERIC
-STRING  = File.open('/usr/bin/openssl','rb') do |file|
-            file.read
-          end
+STRING  = File.binread('/usr/bin/openssl')
 
 Benchmark.bm(41) do |b|
   b.report('Chars::CharSet#each_substring_with_index') do
