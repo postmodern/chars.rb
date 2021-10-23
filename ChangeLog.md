@@ -1,3 +1,9 @@
+### 0.2.4 / 2021-10-22
+
+* Require [ruby] >= 2.0.0.
+* Added {Chars::CharSet#initialize_copy} to prevent leaking characters
+  between copied {Chars::CharSet} objects.
+
 ### 0.2.3 / 2020-12-25
 
 * Change {Chars::CharSet} to inherit from `Set`, instead of `SortedSet`.
@@ -66,3 +72,4 @@
   belongs to a certain character set.
 * Supports random text generation using specific character sets.
 
+[ruby]: https://www.ruby-lang.org/
