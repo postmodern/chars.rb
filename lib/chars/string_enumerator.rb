@@ -3,6 +3,8 @@ module Chars
   # Enumerates through every possible string belonging to a character set and
   # of a given length.
   #
+  # @api private
+  #
   # @since 0.3.0
   #
   class StringEnumerator
