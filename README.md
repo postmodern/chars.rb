@@ -90,10 +90,31 @@ Find all sub-strings that belong to a character set within a String:
 ```ruby
 ls = File.read('/bin/ls')
 Chars.printable.substrings(ls)
-# => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
+# => 
+# ["/lib64/ld-linux-x86-64.so.2",
+#  "_ITM_deregisterTMCloneTable",
+#  "__gmon_start__",
+#  "_ITM_registerTMCloneTable",
+#  ...
+# ]
 ```
 
-Generate all strings from a character set of a given length:
+Find all sub-strings that belong to a character set within a String, with
+indexes:
+
+```ruby
+ls = File.read('/bin/ls')
+Chars.printable.substrings_with_indexes(ls)
+# =>
+# [["/lib64/ld-linux-x86-64.so.2", 792],
+#  ["_ITM_deregisterTMCloneTable", 4009],
+#  ["__gmon_start__", 4037],
+#  ["_ITM_registerTMCloneTable", 4052],
+#  ...
+# ]
+```
+
+Enumerate over all strings from a character set of a given length:
 
 ```ruby
 passwords = Chars.visible.strings_of_length(6)
@@ -101,6 +122,17 @@ passwords.each { |password| puts password }
 # AAAAAA
 # AAAAAB
 # AAAAAC
+# ...
+```
+
+Enumerate over all strings from a character set of lengths between 4 and 8:
+
+```ruby
+passwords = Chars.visible.strings_of_length(4..8)
+passwords.each { |password| puts password }
+# AAAA
+# AAAB
+# AAAC
 # ...
 ```
 
