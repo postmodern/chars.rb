@@ -155,13 +155,13 @@ passwords.each { |password| puts password }
 ### gemspec
 
 ```ruby
-gem.add_dependency 'chars', '~> 0.2'
+gem.add_dependency 'chars', '~> 0.3'
 ```
 
 ### Gemfile
 
 ```ruby
-gem 'chars', '~> 0.2'
+gem 'chars', '~> 0.3'
 ```
 
 ## Crystal
