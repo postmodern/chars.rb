@@ -48,14 +48,6 @@ Determine whether a String belongs to a character set:
 # => true
 ```
 
-Find all sub-strings that belong to a character set within a String:
-
-```ruby
-ls = File.read('/bin/ls')
-Chars.printable.strings_in(ls)
-# => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
-```
-
 Return a random character from the set of all characters:
 
 ```ruby
@@ -91,6 +83,14 @@ set of space characters:
 ```ruby
 Chars.space.random_string(5..10)
 # => "\r\v\n\t\n\f"
+```
+
+Find all sub-strings that belong to a character set within a String:
+
+```ruby
+ls = File.read('/bin/ls')
+Chars.printable.substrings(ls)
+# => ["/lib64/ld-linux-x86-64.so.2", "KIq/", "5J~!", "%L~!", ...]
 ```
 
 ## Requirements
