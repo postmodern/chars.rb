@@ -22,7 +22,7 @@
 
 ### 0.2.2 / 2012-05-28
 
-* {Chars::CharSet#initialize} now raises a TypeError when given arguments
+* {Chars::CharSet#initialize} now raises a `TypeError` when given arguments
   that were neither a `String`, `Integer` or `Enumerable`.
 * Allow {Chars::CharSet#strings_in} to yield results as they are found.
 * Improved the performance of {Chars::CharSet#strings_in} when operating on
@@ -46,9 +46,9 @@
 
 ### 0.1.2 / 2009-09-21
 
-* Require Hoe >= 2.3.3.
-* Require YARD >= 0.2.3.5.
-* Require RSpec >= 1.2.8.
+* Require `hoe` >= 2.3.3.
+* Require `yard` >= 0.2.3.5.
+* Require `rspec` >= 1.2.8.
 * Added {Chars.visibile} and {Chars::VISIBLE} (thanks flatline).
 * Added {Chars::CharSet#random_distinct_bytes},
   {Chars::CharSet#random_distinct_chars}, and {CharSet#random_distinct_string}
@@ -81,7 +81,7 @@
   * Printable
   * Control
   * ASCII
-* Provides convenience methods for testing whether a String or Integer
+* Provides convenience methods for testing whether a `String` or `Integer`
   belongs to a certain character set.
 * Supports random text generation using specific character sets.
 
