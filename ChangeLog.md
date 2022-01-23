@@ -81,7 +81,7 @@
   * Printable
   * Control
   * ASCII
-* Provides convenience methods for testing wether a String or Integer
+* Provides convenience methods for testing whether a String or Integer
   belongs to a certain character set.
 * Supports random text generation using specific character sets.
 
