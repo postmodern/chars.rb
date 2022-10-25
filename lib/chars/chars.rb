@@ -84,6 +84,11 @@ module Chars
   end
 
   #
+  # Alias for {numeric}.
+  #
+  # @return [CharSet]
+  #   The decimal-digit character set.
+  #
   # @see numeric
   #
   # @since 0.3.0
@@ -228,6 +233,8 @@ module Chars
 
   #
   # The whitespace character set.
+  #
+  # @return [CharSet]
   #
   # @see #whitespace
   #
