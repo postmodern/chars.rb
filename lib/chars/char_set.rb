@@ -44,6 +44,12 @@ module Chars
     #
     # Creates a new {CharSet}.
     #
+    # @param [Array<String, Integer, Enumerable>] arguments
+    #   The chars for the CharSet.
+    #
+    # @return [CharSet]
+    #   The new character set.
+    #
     # @see #initialize
     #
     # @since 0.2.1
