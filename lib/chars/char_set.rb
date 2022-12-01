@@ -17,7 +17,13 @@ module Chars
     def initialize(*arguments)
       super()
 
-      @chars = Hash.new { |hash,key| hash[key] = key.chr(Encoding::UTF_8) }
+      @chars = Hash.new do |hash,key|
+        hash[key] = if key > 0xff
+                      key.chr(Encoding::UTF_8)
+                    else
+                      key.chr(Encoding::ASCII_8BIT)
+                    end
+      end
 
       arguments.each do |subset|
         case subset

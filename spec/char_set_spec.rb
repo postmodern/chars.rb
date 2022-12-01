@@ -42,6 +42,18 @@ describe Chars::CharSet do
       it "must populate the char set using the Integers as bytes" do
         expect(integers.all? { |i| subject.include?(i) }).to be(true)
       end
+
+      it "must encode them as ASCII 8bit Strings" do
+        expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+      end
+
+      context "when one of the Integers is greater than 0xff" do
+        let(:integers) { [0x100, 0xffff] }
+
+        it "must encode the Integer as a UTF-8 String" do
+          expect(subject.chars.map(&:encoding)).to all(be(Encoding::UTF_8))
+        end
+      end
     end
 
     context "when given an Array of Integers" do
@@ -50,6 +62,18 @@ describe Chars::CharSet do
       it "must populate the char set using the Integers as bytes" do
         expect(integers.all? { |i| subject.include?(i) }).to be(true)
       end
+
+      it "must encode them as ASCII 8bit Strings" do
+        expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+      end
+
+      context "when one of the Integers is greater than 0xff" do
+        let(:integers) { [0x100, 0xffff] }
+
+        it "must encode the Integer as a UTF-8 String" do
+          expect(subject.chars.map(&:encoding)).to all(be(Encoding::UTF_8))
+        end
+      end
     end
 
     context "when given a Range of Integers" do
@@ -57,6 +81,18 @@ describe Chars::CharSet do
 
       it "must populate the char set by enumerating over the Integer's bytes" do
         expect(integers.all? { |i| subject.include?(i) }).to be(true)
+      end
+
+      it "must encode them as ASCII 8bit Strings" do
+        expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+      end
+
+      context "when one of the Integers is greater than 0xff" do
+        let(:integer_range) { (0x100..0x200) }
+
+        it "must encode the Integer as a UTF-8 String" do
+          expect(subject.chars.map(&:encoding)).to all(be(Encoding::UTF_8))
+        end
       end
     end
   end
