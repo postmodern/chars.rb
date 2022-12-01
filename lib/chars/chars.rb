@@ -60,7 +60,7 @@ module Chars
   ]
   
   # The set of printable characters (including spaces)
-  PRINTABLE = ALPHA_NUMERIC | PUNCTUATION | SYMBOLS | SPACE
+  PRINTABLE = ALPHA_NUMERIC | PUNCTUATION | SYMBOLS | CharSet[' ']
 
   # The control-char character set
   CONTROL = CharSet[0..0x1f, 0x7f]

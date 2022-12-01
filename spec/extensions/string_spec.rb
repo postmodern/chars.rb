@@ -58,7 +58,7 @@ describe String do
   end
 
   it "should recognize printable strings" do
-    expect("abc, [123]\nDEF").to be_printable
+    expect("abc, [123] DEF").to be_printable
   end
 
   it "should recognize control strings" do

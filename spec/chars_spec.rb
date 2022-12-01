@@ -145,12 +145,12 @@ describe Chars do
   describe "PRINTABLE" do
     subject { described_class::PRINTABLE }
 
-    it "must contain all alpha-numeric, punctuation, symbols, and whitespace characters" do
+    it "must contain all alpha-numeric, punctuation, symbols, and space characters" do
       expect(subject.chars).to match_array(
         alpha_numeric_chars |
         punctuation_chars |
         symbolic_chars |
-        whitespace_chars
+        [' ']
       )
     end
   end
