@@ -1,3 +1,11 @@
+### 0.3.1 / 2022-12-01
+
+* Removed the space character from {Chars::PUNCTUATION}, as spaces are not
+  technically a punctuation character.
+* Removed `\f`, `\n`, `\r`, `\t`, and `\v` from {Chars::PRINTABLE}, as other
+  whitespace characters besides space (`' '`) are not considered printable
+  characters.
+
 ### 0.3.0 / 2021-10-23
 
 * Added {Chars::WHITESPACE}.
