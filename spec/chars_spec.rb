@@ -96,7 +96,7 @@ describe Chars do
     end
   end
 
-  let(:punctuation_chars) { " !\"'(),-.:;?[]`{}~".chars }
+  let(:punctuation_chars) { "!\"'(),-.:;?[]`{}~".chars }
 
   describe "PUNCTUATION" do
     subject { described_class::PUNCTUATION }
@@ -106,7 +106,7 @@ describe Chars do
     end
   end
 
-  let(:symbolic_chars) { " !\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".chars }
+  let(:symbolic_chars) { "!\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".chars }
 
   describe "SYMBOLS" do
     subject { described_class::SYMBOLS }

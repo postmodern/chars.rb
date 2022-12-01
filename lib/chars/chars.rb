@@ -36,7 +36,7 @@ module Chars
   ALPHA_NUMERIC = ALPHA | NUMERIC
 
   # The punctuation character set
-  PUNCTUATION = CharSet[' ', '\'', '"', '`', ',', ';', ':', '~', '-',
+  PUNCTUATION = CharSet['\'', '"', '`', ',', ';', ':', '~', '-',
                         '(', ')', '[', ']', '{', '}', '.', '?', '!']
 
   # The symbolic character set
