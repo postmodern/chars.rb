@@ -10,6 +10,10 @@ describe Chars do
     it "must contain numeric characters" do
       expect(subject.chars).to match_array(numeric_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "DIGITS" do
@@ -18,6 +22,10 @@ describe Chars do
     it "must equal NUMERIC" do
       expect(subject).to be(described_class::NUMERIC)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "OCTAL" do
@@ -25,6 +33,10 @@ describe Chars do
 
     it "must contain all octal characters" do
       expect(subject.chars).to match_array("01234567".chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -36,6 +48,10 @@ describe Chars do
     it "must contain all upper-case hexadecimal characters" do
       expect(subject.chars).to match_array(uppercase_hex_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   let(:lowercase_hex_chars) { "0123456789abcdef".chars }
@@ -46,6 +62,10 @@ describe Chars do
     it "must contain all lower-case hexadecimal characters" do
       expect(subject.chars).to match_array(lowercase_hex_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "HEXADECIMAL" do
@@ -53,6 +73,10 @@ describe Chars do
 
     it "must contain both upper-case and lower-case hexadecimal characters" do
       expect(subject.chars).to match_array(uppercase_hex_chars | lowercase_hex_chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -64,6 +88,10 @@ describe Chars do
     it "must contain all upper-case alpha characters" do
       expect(subject.chars).to match_array(uppercase_alpha_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   let(:lowercase_alpha_chars) { "abcdefghijklmnopqrstuvwxyz".chars }
@@ -73,6 +101,10 @@ describe Chars do
 
     it "must contain all lower-case alpha characters" do
       expect(subject.chars).to match_array(lowercase_alpha_chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -84,6 +116,10 @@ describe Chars do
     it "must contain all alpha characters" do
       expect(subject.chars).to match_array(alpha_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   let(:alpha_numeric_chars) { alpha_chars | numeric_chars }
@@ -93,6 +129,10 @@ describe Chars do
 
     it "must contain all alpha-numeric characters" do
       expect(subject.chars).to match_array(alpha_numeric_chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -104,6 +144,10 @@ describe Chars do
     it "must contain all punctuation characters" do
       expect(subject.chars).to match_array(punctuation_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   let(:symbolic_chars) { "!\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".chars }
@@ -113,6 +157,10 @@ describe Chars do
 
     it "must contain all symbolic characters" do
       expect(subject.chars).to match_array(symbolic_chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -124,6 +172,10 @@ describe Chars do
     it "must contain all white-space characters" do
       expect(subject.chars).to match_array(whitespace_chars)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "SPACE" do
@@ -132,6 +184,10 @@ describe Chars do
     it "must equal WHITESPACE" do
       expect(subject).to be(described_class::WHITESPACE)
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "VISIBLE" do
@@ -139,6 +195,10 @@ describe Chars do
 
     it "must contain all all alpha-numeric, symbols, and some punctuation" do
       expect(subject.chars).to match_array(alpha_numeric_chars | "!\"\#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".chars)
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -153,6 +213,10 @@ describe Chars do
         [' ']
       )
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "CONTROL" do
@@ -160,6 +224,10 @@ describe Chars do
 
     it "must contain ASCII bytes 0x00 - 0x1f and 0x7f" do
       expect(subject.bytes).to eq([*0x00..0x1f, 0x7f])
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
@@ -169,6 +237,10 @@ describe Chars do
     it "must contain ASCII bytes 0x00 - 0x7f" do
       expect(subject.bytes).to eq([*0x00..0x7f])
     end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
+    end
   end
 
   describe "ASCII" do
@@ -176,6 +248,10 @@ describe Chars do
 
     it "must contain ASCII bytes 0x00 - 0xff" do
       expect(subject.bytes).to eq([*0x00..0xff])
+    end
+
+    it "must only contain ASCII-8bit encoded characters" do
+      expect(subject.chars.map(&:encoding)).to all(be(Encoding::ASCII_8BIT))
     end
   end
 
