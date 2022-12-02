@@ -1,3 +1,11 @@
+### 0.3.2 / 2022-12-02
+
+* Ensure all character Strings within the {Chars} character sets are encoded as
+  ASCII-8bit. This prevents transcoding issues when calling
+  `Chars::ASCII.random_string(length)`.
+* Changed {Chars::CharSet#initialize} to encode bytes greater than 256 as UTF-8.
+  Otherwise, bytes less than 256 will be encoded as ASCII-8bit.
+
 ### 0.3.1 / 2022-12-01
 
 * Removed the space character from {Chars::PUNCTUATION}, as spaces are not
