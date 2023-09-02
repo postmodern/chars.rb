@@ -580,7 +580,7 @@ module Chars
     #   If no block is given, an Array or Hash of sub-strings is returned.
     #
     # @deprecated
-    #   Use {#each_substring_with_index}, {#substrings_with_index},
+    #   Use {#each_substring_with_index}, {#substrings_with_indexes},
     #   {#each_substring}, or {#substrings} instead.
     #
     def strings_in(data,options={},&block)
@@ -613,7 +613,7 @@ module Chars
     #   The given block will be passed each sequential string.
     #
     # @yieldparam [String] string
-    #   A string belonging to {#char_set} and `length` long.
+    #   A string belonging to the {CharSet} and of `length` long.
     #
     # @return [Enumerator]
     #   If no block is given, an Enumerator will be returned.
@@ -635,7 +635,7 @@ module Chars
 
     #
     # Returns an Enumerator that enumerates through every possible string
-    # belonging to the {CharSEt} and of the given length.
+    # belonging to the {CharSet} and of the given length.
     #
     # @param [Range, Array, Integer] length
     #   The desired length(s) of each string.
@@ -656,7 +656,7 @@ module Chars
     #   The other {CharSet} to union with.
     #
     # @return [CharSet]
-    #   The unioned {ChraSet}.
+    #   The unioned {CharSet}.
     #
     def |(set)
       set = CharSet.new(set) unless set.kind_of?(CharSet)
