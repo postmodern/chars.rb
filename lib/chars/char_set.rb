@@ -1,4 +1,4 @@
-require 'chars/string_enumerator'
+require_relative 'string_enumerator'
 
 require 'set'
 

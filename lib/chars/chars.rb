@@ -1,7 +1,7 @@
 # encoding: ASCII-8BIT
 # frozen_string_literal: true
 
-require 'chars/char_set'
+require_relative 'char_set'
 
 module Chars
   # The numeric decimal character set

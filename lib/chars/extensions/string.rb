@@ -1,4 +1,4 @@
-require 'chars/chars'
+require_relative '../chars'
 
 class String
 

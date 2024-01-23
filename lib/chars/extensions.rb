@@ -1,2 +1,2 @@
-require 'chars/extensions/integer'
-require 'chars/extensions/string'
+require_relative 'extensions/integer'
+require_relative 'extensions/string'

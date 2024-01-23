@@ -1,4 +1,4 @@
-require 'chars/char_set'
-require 'chars/chars'
-require 'chars/extensions'
-require 'chars/version'
+require_relative 'chars/char_set'
+require_relative 'chars/chars'
+require_relative 'chars/extensions'
+require_relative 'chars/version'
