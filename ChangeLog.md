@@ -1,3 +1,7 @@
+### 0.3.3 / 2024-01-23
+
+* Switch to using `require_relative` to improve load-times.
+
 ### 0.3.2 / 2022-12-02
 
 * Ensure all character Strings within the {Chars} character sets are encoded as
