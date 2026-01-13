@@ -1,3 +1,9 @@
+### 0.3.4 / 2026-01-12
+
+* Added support for Ruby 4.0.
+* Fixed a bug in {Chars::CharSet#initialize_copy} where `super` was not being
+  called.
+
 ### 0.3.3 / 2024-01-23
 
 * Switch to using `require_relative` to improve load-times.
