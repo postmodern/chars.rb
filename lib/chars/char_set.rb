@@ -44,6 +44,8 @@ module Chars
     #   The other {CharSet} object.
     #
     def initialize_copy(other)
+      super(other)
+
       @chars = other.instance_variable_get('@chars').dup
     end
 
